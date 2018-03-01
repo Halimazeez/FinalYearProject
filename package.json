@@ -1,25 +1,28 @@
 {
-  "name": "project",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "material-ui": "^1.0.0-beta.35",
-    "material-ui-icons": "^1.0.0-beta.35",
-    "moment": "^2.20.1",
-    "prettier": "^1.11.0",
-    "prop-types": "^15.6.1",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-router": "^4.2.0",
-    "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.1",
-    "styled-components": "^3.1.6",
-    "typeface-roboto": "0.0.54"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
+	"name": "project",
+	"version": "0.1.0",
+	"private": true,
+	"homepage": "https://Halimazeez.github.io/FinalYearProject",
+	"dependencies": {
+		"gh-pages": "^1.1.0",
+		"material-ui": "^1.0.0-beta.35",
+		"material-ui-icons": "^1.0.0-beta.35",
+		"moment": "^2.20.1",
+		"prettier": "^1.11.0",
+		"prop-types": "^15.6.1",
+		"react": "^16.2.0",
+		"react-dom": "^16.2.0",
+		"react-router": "^4.2.0",
+		"react-router-dom": "^4.2.2",
+		"react-scripts": "1.1.1",
+		"styled-components": "^3.1.6",
+		"typeface-roboto": "0.0.54"
+	},
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "react-scripts test --env=jsdom",
+		"eject": "react-scripts eject",
+		"deploy": "npm run build&&gh-pages -d build"
+	}
 }
