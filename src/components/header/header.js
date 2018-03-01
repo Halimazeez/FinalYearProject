@@ -18,10 +18,11 @@ const styles = {
 	menuButton: {
 		marginLeft: -12,
 		marginRight: 20
-	}
+	},
+	appBar: {}
 };
 
-class MenuAppBar extends React.Component {
+class Header extends React.Component {
 	state = {
 		auth: true,
 		anchorEl: null
@@ -44,61 +45,55 @@ class MenuAppBar extends React.Component {
 		const { auth, anchorEl } = this.state;
 		const open = Boolean(anchorEl);
 		return (
-			<styledAppBar>
-				<AppBar style={{ backgroundColor: "#2196F3" }}>
-					<Toolbar>
-						<IconButton
-							className={classes.menuButton}
-							color="inherit"
-							aria-label="Menu"
-						>
-							<MenuIcon />
-						</IconButton>
-						<Typography
-							variant="title"
-							color="inherit"
-							className={classes.flex}
-						>
-							FitMe
-						</Typography>
-						{auth && (
-							<div>
-								<IconButton
-									aria-owns={open ? "menu-appbar" : null}
-									aria-haspopup="true"
-									onClick={this.handleMenu}
-									color="inherit"
-								>
-									<AccountCircle />
-								</IconButton>
-								<Menu
-									id="menu-appbar"
-									anchorEl={anchorEl}
-									anchorOrigin={{
-										vertical: "top",
-										horizontal: "left"
-									}}
-									transformOrigin={{
-										vertical: "top",
-										horizontal: "left"
-									}}
-									open={open}
-									onClose={this.handleClose}
-								>
-									<MenuItem onClick={this.handleClose}>Profile</MenuItem>
-									<MenuItem onClick={this.handleClose}>My account</MenuItem>
-								</Menu>
-							</div>
-						)}
-					</Toolbar>
-				</AppBar>
-			</styledAppBar>
+			<AppBar className={classes.appBar}>
+				<Toolbar>
+					<IconButton
+						className={classes.menuButton}
+						color="inherit"
+						aria-label="Menu"
+					>
+						<MenuIcon />
+					</IconButton>
+					<Typography variant="title" color="inherit" className={classes.flex}>
+						fit<b>Me</b>
+					</Typography>
+					{auth && (
+						<div>
+							<IconButton
+								aria-owns={open ? "menu-appbar" : null}
+								aria-haspopup="true"
+								onClick={this.handleMenu}
+								color="inherit"
+							>
+								<AccountCircle />
+							</IconButton>
+							<Menu
+								id="menu-appbar"
+								anchorEl={anchorEl}
+								anchorOrigin={{
+									vertical: "top",
+									horizontal: "left"
+								}}
+								transformOrigin={{
+									vertical: "top",
+									horizontal: "left"
+								}}
+								open={open}
+								onClose={this.handleClose}
+							>
+								<MenuItem onClick={this.handleClose}>Profile</MenuItem>
+								<MenuItem onClick={this.handleClose}>My account</MenuItem>
+							</Menu>
+						</div>
+					)}
+				</Toolbar>
+			</AppBar>
 		);
 	}
 }
 
-MenuAppBar.propTypes = {
+Header.propTypes = {
 	classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(MenuAppBar);
+export default withStyles(styles)(Header);
