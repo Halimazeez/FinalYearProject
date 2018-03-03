@@ -7,14 +7,23 @@ import Header from "./components/header/header";
 import "typeface-roboto";
 import theme from "./layout/theme";
 
-const App = () => (
-	<MuiThemeProvider theme={theme}>
-		<div>
-			<Header />
-			<Route path="/" exact component={HomePage} />
-			<Route path="/login" exact component={LoginPage} />
-		</div>
-	</MuiThemeProvider>
-);
-
+class App extends React.Component {
+	constructor() {
+		super();
+		this.state = {
+			authenticated: false
+		};
+	}
+	render() {
+		return (
+			<MuiThemeProvider theme={theme}>
+				<div>
+					<Header authenticated={this.state.authenticated} />
+					<Route path="/" exact component={HomePage} />
+					<Route path="/login" exact component={LoginPage} />
+				</div>
+			</MuiThemeProvider>
+		);
+	}
+}
 export default App;

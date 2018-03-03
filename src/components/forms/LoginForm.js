@@ -5,7 +5,95 @@ import TextField from "material-ui/TextField";
 import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
 import Paper from "material-ui/Paper";
-import blue500 from "material-ui/colors";
+import Formsy from "formsy-react";
+import styled from "styled-components";
+
+class LoginForm extends React.Component {
+	constructor() {
+		super();
+		this.state = {
+			data: {
+				username: "",
+				password: ""
+			},
+			loading: false, // load in state
+			errors: {} // error object empty by default
+		};
+	}
+
+	//global onchange for state
+	onchange = e =>
+		this.setState({
+			data: { ...this.state.data, [e.target.name]: e.target.value }
+		});
+
+	// submit login form with username and password
+	onSubmit = event => {
+		//this.props.submit(this.state.data);
+		this.authWithEmailPassword(event);
+	};
+
+	//refernce for form to reset after authenticated
+	refForm = form => {
+		this.LoginForm = form;
+	};
+
+	render() {
+		const { classes } = this.props;
+		const data = this.state;
+		return (
+			<form
+				className={classes.container}
+				onSubmit={this.onSubmit}
+				ref={this.refForm}
+			>
+				<Paper className={classes.paper}>
+					<h1 className={classes.header}>Login</h1>
+					<TextField
+						id="username"
+						label="Username"
+						className={classes.textField}
+						value={data.username}
+						onChange={this.onChange}
+						required
+					/>
+					<TextField
+						id="password"
+						label="Password"
+						className={classes.textField}
+						value={data.password}
+						type="password"
+						onChange={this.onChange}
+						required
+					/>
+					<Button
+						type="submit"
+						className={classes.button}
+						variant="raised"
+						color="primary"
+					>
+						Login
+					</Button>
+					<Button
+						className={classes.buttonFb}
+						variant="raised"
+						color="primary"
+						onClick={() => {
+							this.authwithFacebook();
+						}}
+					>
+						Login with facebook
+					</Button>
+				</Paper>
+			</form>
+		);
+	}
+}
+
+LoginForm.propTypes = {
+	classes: PropTypes.object.isRequired,
+	submit: PropTypes.func.isRequired
+};
 
 const styles = theme => ({
 	textField: {
@@ -40,59 +128,4 @@ const styles = theme => ({
 	}
 });
 
-class LoginForm extends React.Component {
-	constructor() {
-		super();
-		this.state = {
-			data: {
-				username: "",
-				password: ""
-			},
-			loading: false, // load in state
-			errors: {} // error object empty by default
-		};
-		const handleChange = username => event => {
-			this.setState({
-				[username]: event.target.value
-			});
-		};
-	}
-	render() {
-		const { classes } = this.props;
-		return (
-			<form className={classes.container} noValidate autoComplete="off">
-				<Paper className={classes.paper}>
-					<h1 className={classes.header}>Login</h1>
-					<TextField
-						id="Psername"
-						label="Username"
-						className={classes.textField}
-						value={this.state.username}
-						onChange={"username"}
-						margin="normal"
-					/>
-					<TextField
-						id="Password"
-						label="Password"
-						className={classes.textField}
-						value={this.state.password}
-						type="password"
-						onChange={"username"}
-						margin="normal"
-					/>
-
-					<Button className={classes.button} variant="raised" color="primary">
-						Login
-					</Button>
-					<Button className={classes.button} variant="raised" color="secondary">
-						Register
-					</Button>
-				</Paper>
-			</form>
-		);
-	}
-}
-LoginForm.propTypes = {
-	classes: PropTypes.object.isRequired
-};
 export default withStyles(styles)(LoginForm);

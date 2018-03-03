@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const LoginPage = () => (
 	<div>
-		<LoginForm />
+		<LoginForm submit={this.submit} />
 	</div>
 );
 

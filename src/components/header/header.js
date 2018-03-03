@@ -24,7 +24,7 @@ const styles = {
 
 class Header extends React.Component {
 	state = {
-		auth: true,
+		auth: false,
 		anchorEl: null
 	};
 
