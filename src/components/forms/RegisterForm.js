@@ -1,96 +1,91 @@
 import React from "react";
-import Button from "material-ui/Button";
-import MenuItem from "material-ui/Menu/MenuItem";
-import TextField from "material-ui/TextField";
-import PropTypes from "prop-types";
-import { Redirect, Link } from "react-router-dom";
+import { createUser } from "../helpers/auth";
 import Paper from "material-ui/Paper";
-import { login, resetPassword } from "../helpers/auth";
+import Button from "material-ui/Button";
+import TextField from "material-ui/TextField";
 
-//Login error
 function setErrorMsg(error) {
 	return {
-		loginMessage: error
+		registerError: error.message
 	};
 }
 
-export default class LoginForm extends React.Component {
+//const isInvalid = passwordOne !== passwordTwo;
+
+export default class RegisterForm extends React.Component {
 	constructor() {
 		super();
 		this.state = {
 			email: "",
 			password: "",
-			loginMessage: null
+
+			registerError: null
 		};
 	}
 
 	//global onchange for state
-	onchange = e =>
+	onChange = e =>
 		this.setState({
-			[e.target.id]: e.target.value
+			[e.target.id]: e.target.value,
+			//reset the error if exist
+			registerError: null
 		});
 
-	// submit login form with username and password
+	//submit new user information
 	onSubmit = e => {
-		this.setState(setErrorMsg(""));
 		e.preventDefault();
-		login(this.state.email, this.state.password).catch(error => {
-			this.setState(setErrorMsg("Invalid Email or Password."));
-		});
-	};
-
-	//refernce for form to reset after authenticated
-	refForm = form => {
-		this.LoginForm = form;
+		//console.log(this.state.email);
+		//console.log(this.state.password);
+		createUser(this.state.email, this.state.password).catch(e =>
+			this.setState(setErrorMsg(e))
+		);
 	};
 
 	render() {
 		const data = this.state;
 		return (
-			<form
-				style={styles.container}
-				onSubmit={this.onSubmit}
-				ref={this.refForm}
-			>
+			<form onSubmit={this.onSubmit} style={styles.container}>
 				<Paper style={styles.paper}>
-					<h1 style={styles.header}>Login</h1>
+					<h1>Register</h1>
 					<TextField
 						id="email"
 						label="Email"
-						placeholder="Enter your email"
+						placeholder="Enter your Email"
 						style={styles.textField}
-						value={this.state.email}
 						onChange={this.onChange}
+						value={this.state.email}
 						required
 					/>
 					<TextField
 						id="password"
-						label="Password"
-						style={styles.textField}
-						value={this.state.password}
 						type="password"
+						label="Password"
+						placeholder="Create a password"
+						style={styles.textField}
 						onChange={this.onChange}
+						value={this.state.password}
 						required
 					/>
+					{this.state.registerError && (
+						<div>
+							<p>Error:{this.state.registerError}</p>
+						</div>
+					)}
 					<Button
-						type="submit"
-						style={styles.button}
-						variant="raised"
+						label="register"
 						color="primary"
+						variant="raised"
+						style={styles.button}
+						type="submit"
 					>
-						Login
+						Register
 					</Button>
-
-					<Link to="/register">
-						<Button style={styles.button} variant="raised" color="secondary">
-							Register
-						</Button>
-					</Link>
 				</Paper>
 			</form>
 		);
 	}
 }
+
 const styles = {
 	textField: {
 		width: 300,

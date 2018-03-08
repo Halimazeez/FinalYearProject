@@ -1,9 +1,9 @@
 import React from "react";
-import LoginForm from "../forms/LoginForm";
+import RegisterForm from "../forms/RegisterForm";
 
 const LoginPage = () => (
 	<div>
-		<LoginForm />
+		<RegisterForm />
 	</div>
 );
 
