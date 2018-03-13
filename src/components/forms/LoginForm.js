@@ -3,7 +3,7 @@ import Button from "material-ui/Button";
 import MenuItem from "material-ui/Menu/MenuItem";
 import TextField from "material-ui/TextField";
 import PropTypes from "prop-types";
-import { Redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Paper from "material-ui/Paper";
 import { login, resetPassword } from "../helpers/auth";
 
