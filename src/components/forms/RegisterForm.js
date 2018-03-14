@@ -34,8 +34,6 @@ export default class RegisterForm extends React.Component {
 	//submit new user information
 	onSubmit = e => {
 		e.preventDefault();
-		//console.log(this.state.email);
-		//console.log(this.state.password);
 		createUser(this.state.email, this.state.password).catch(e =>
 			this.setState(setErrorMsg(e))
 		);
