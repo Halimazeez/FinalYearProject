@@ -42,7 +42,6 @@ export default class RegisterForm extends React.Component {
 	};
 
 	render() {
-		const data = this.state;
 		return (
 			<form onSubmit={this.onSubmit} style={styles.container}>
 				<Paper style={styles.paper}>

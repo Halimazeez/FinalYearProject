@@ -1,5 +1,4 @@
 import React from "react";
-import { withStyles } from "material-ui/styles";
 import AppBar from "material-ui/AppBar";
 import Toolbar from "material-ui/Toolbar";
 import Typography from "material-ui/Typography";
@@ -37,7 +36,7 @@ export default class Header extends React.Component {
 	//check to see if user is authenticated with firebase
 	//if user is authed set auth state to true, else false
 	componentDidMount() {
-		this.removeListener = firebaseAuth().onAuthStateChanged(user => {
+		firebaseAuth().onAuthStateChanged(user => {
 			if (user) {
 				this.setState({
 					isAuthed: true,
@@ -52,17 +51,16 @@ export default class Header extends React.Component {
 		});
 	}
 
-	//component mount has to unmount
-	componentWillUnmount() {
-		this.removeListener();
-	}
-
 	render() {
 		const { auth, anchorEl } = this.state;
 		const open = Boolean(anchorEl);
 
 		//add Authed profile icon with logout
 		const authedNav = this.state.isAuthed ? (
+			<Link to="/login" style={styles.loginLink}>
+				<Button color="inherit">Login</Button>
+			</Link>
+		) : (
 			<div>
 				<IconButton
 					aria-owns={open ? "menu-appbar" : null}
@@ -96,36 +94,33 @@ export default class Header extends React.Component {
 					</MenuItem>
 				</Menu>
 			</div>
-		) : (
-			<Link to="/login">
-				<Button color="inherit">Login</Button>
-			</Link>
 		);
 
 		//home button by default
 		const topbarButtons = (
 			<div>
-				<Link to="/">
-					<Menu />
+				<Link to="/" style={styles.homeBtn}>
+					<IconButton color="inherit">
+						<Home />
+					</IconButton>
 				</Link>
 				{authedNav}
 			</div>
 		);
 
 		return (
-			<div>
+			<div style={styles.root}>
 				<AppBar>
 					<Toolbar>
-						<IconButton
-							style={styles.menuButton}
-							color="inherit"
-							aria-label="Menu"
-						>
+						<IconButton style={styles.menuButton} color="inherit">
 							<MenuIcon />
 						</IconButton>
-						<Typography variant="title" color="inherit">
+
+						<Typography variant="title" color="inherit" style={styles.flex}>
 							fit<b>Me</b>
 						</Typography>
+
+						<div>{topbarButtons}</div>
 					</Toolbar>
 				</AppBar>
 			</div>
@@ -134,8 +129,15 @@ export default class Header extends React.Component {
 }
 
 const styles = {
+	homeBtn: {
+		color: "inherit"
+	},
+	loginLink: {
+		color: "inherit",
+		textDecoration: "none"
+	},
 	root: {
-		flexgrow: 1
+		flexGrow: 1
 	},
 	flex: {
 		flex: 1

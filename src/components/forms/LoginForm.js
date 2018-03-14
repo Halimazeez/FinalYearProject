@@ -1,8 +1,6 @@
 import React from "react";
 import Button from "material-ui/Button";
-import MenuItem from "material-ui/Menu/MenuItem";
 import TextField from "material-ui/TextField";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import Paper from "material-ui/Paper";
 import { login, resetPassword } from "../helpers/auth";
@@ -25,7 +23,7 @@ export default class LoginForm extends React.Component {
 	}
 
 	//global onchange for state
-	onchange = e =>
+	onChange = e =>
 		this.setState({
 			[e.target.id]: e.target.value
 		});
@@ -39,19 +37,9 @@ export default class LoginForm extends React.Component {
 		});
 	};
 
-	//refernce for form to reset after authenticated
-	refForm = form => {
-		this.LoginForm = form;
-	};
-
 	render() {
-		const data = this.state;
 		return (
-			<form
-				style={styles.container}
-				onSubmit={this.onSubmit}
-				ref={this.refForm}
-			>
+			<form style={styles.container} onSubmit={this.onSubmit}>
 				<Paper style={styles.paper}>
 					<h1 style={styles.header}>Login</h1>
 					<TextField
@@ -61,6 +49,7 @@ export default class LoginForm extends React.Component {
 						style={styles.textField}
 						value={this.state.email}
 						onChange={this.onChange}
+						type="email"
 						required
 					/>
 					<TextField
@@ -109,8 +98,7 @@ const styles = {
 		left: 0,
 		right: 0,
 		margin: "auto",
-		textAlign: "center",
-		required: "hidden"
+		textAlign: "center"
 	},
 	paper: {
 		padding: 20,

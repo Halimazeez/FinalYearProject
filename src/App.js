@@ -10,22 +10,15 @@ import "typeface-roboto";
 import theme from "./layout/theme";
 
 class App extends React.Component {
-	constructor() {
-		super();
-		this.state = {
-			authenticated: false
-		};
-	}
 	render() {
 		return (
 			<MuiThemeProvider theme={theme}>
 				<div>
-					<Header authenticated={this.state.authenticated} />
+					<Header />
 					<Route path="/" exact component={HomePage} />
 					<Route path="/login" exact component={LoginPage} />
 					<Route path="/register" exact component={RegisterPage} />
 					<Route path="/dashboard" exact component={DashBoard} />
-					<Route render={() => <h1>Page not found</h1>} />
 				</div>
 			</MuiThemeProvider>
 		);

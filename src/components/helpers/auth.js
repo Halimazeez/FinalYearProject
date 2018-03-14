@@ -27,8 +27,7 @@ export function addUser(user) {
 	return db
 		.collection(`users`)
 		.add({
-			email: user.email,
-			uid: user.uid
+			email: user.email
 		})
 		.then(docRef => docRef)
 		.catch(function(error) {
