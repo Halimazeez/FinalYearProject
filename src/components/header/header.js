@@ -8,19 +8,18 @@ import MenuIcon from "material-ui-icons/Menu";
 import HeaderButtons from "./headerButtons";
 
 export const Header = () => (
-	<div>
-		<AppBar>
-			<Toolbar>
-				<IconButton style={styles.menuButton} color="inherit">
-					<MenuIcon />
-				</IconButton>
-				<Typography variant="title" color="inherit" style={styles.flex}>
-					fit<b>Me</b>
-				</Typography>
-				<HeaderButtons />
-			</Toolbar>
-		</AppBar>
-	</div>
+	<AppBar position="static">
+		<Toolbar>
+			<IconButton style={styles.menuButton} color="inherit">
+				<MenuIcon />
+			</IconButton>
+			<Typography variant="title" color="inherit" style={styles.flex}>
+				fit<b>Me</b>
+			</Typography>
+
+			<HeaderButtons />
+		</Toolbar>
+	</AppBar>
 );
 
 const styles = {

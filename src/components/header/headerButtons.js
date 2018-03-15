@@ -33,13 +33,14 @@ export default class HeaderButtons extends React.Component {
 	//check to see if user is authenticated with firebase
 	componentWillMount() {
 		firebaseAuth().onAuthStateChanged(user => {
-			//if user is authed set auth state to true, else false
+			//if user is authed set auth state to true
 			if (user) {
 				this.setState({
 					isAuthed: true,
 					loading: false
 				});
 			} else {
+				// else set auth token to false
 				this.setState({
 					isAuthed: false,
 					loading: false

@@ -33,13 +33,11 @@ export default class App extends React.Component {
 		return (
 			<Router path="/" history={history}>
 				<MuiThemeProvider theme={theme}>
-					<div>
-						<Header />
-						<Route path="/home" exact component={HomePage} />
-						<Route path="/login" exact component={LoginPage} />
-						<Route path="/register" exact component={RegisterPage} />
-						<Route path="/dashboard" exact component={DashBoard} />
-					</div>
+					<Header />
+					<Route path="/home" exact component={HomePage} />
+					<Route path="/login" exact component={LoginPage} />
+					<Route path="/register" exact component={RegisterPage} />
+					<Route path="/dashboard" exact component={DashBoard} />
 				</MuiThemeProvider>
 			</Router>
 		);
