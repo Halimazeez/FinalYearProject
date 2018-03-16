@@ -2,25 +2,33 @@ import React from "react";
 import Drawer from "material-ui/Drawer";
 import Divider from "material-ui/Divider";
 import List, { ListItem, ListItemIcon, ListItemText } from "material-ui/List";
+import Paper from "material-ui/Paper";
 import InboxIcon from "material-ui-icons/Inbox";
 import DraftsIcon from "material-ui-icons/Drafts";
+import PropTypes from "prop-types";
+import { withStyles } from "material-ui/styles";
+import styled from "styled-components";
 
-export default class sideNav extends React.Component {
+class sideNav extends React.Component {
 	constructor() {
 		super();
-		this.state = {};
+		this.state = {
+			open: true
+		};
 	}
-
 	render() {
+		const { classes } = this.props;
 		return (
-			<div style={styles.root}>
-				<Drawer variant="permanent" anchor="left" PaperProps={styles.list}>
+			<div>
+				<Drawer variant="permanent" classes={{ paper: classes.paper }}>
 					<List>
 						<ListItem button>
-							<ListItemText primary="One-Rep-Max" />
+							<InboxIcon />
+							{/* }<ListItemText primary="One-Rep-Max" /> */}
 						</ListItem>
 						<ListItem button>
-							<ListItemText primary="Workout Calculator" />
+							<InboxIcon />
+							{/* <ListItemText primary="Workout Calculator" />  */}
 						</ListItem>
 					</List>
 					<Divider />
@@ -29,13 +37,13 @@ export default class sideNav extends React.Component {
 							<ListItemIcon>
 								<InboxIcon />
 							</ListItemIcon>
-							<ListItemText primary="About Us" />
+							{/*<ListItemText primary="About Us" /> */}
 						</ListItem>
 						<ListItem button>
 							<ListItemIcon>
 								<DraftsIcon />
 							</ListItemIcon>
-							<ListItemText primary="Contact" />
+							{/*<ListItemText primary="Contact" /> */}
 						</ListItem>
 					</List>
 				</Drawer>
@@ -44,8 +52,15 @@ export default class sideNav extends React.Component {
 	}
 }
 
+sideNav.propTypes = {
+	classes: PropTypes.object.isRequired
+};
+
 const styles = {
-	list: {
-		top: "64"
+	paper: {
+		position: "static",
+		width: 60
 	}
 };
+
+export default withStyles(styles)(sideNav);

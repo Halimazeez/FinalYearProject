@@ -21,16 +21,18 @@ export default class Dashboard extends React.Component {
 
 const styles = {
 	root: {
-		flexGrow: 1
+		margin: "auto",
+		margin: "0 auto",
+		left: 50,
+		display: "flex"
 	},
 	container: {
-		maxWidth: "50%",
-		paddingTop: 10,
+		width: "100%",
 		margin: "auto",
 		textAlign: "center"
 	},
 	paper: {
-		padding: "20%",
+		height: "100vh",
 		overflow: "auto"
 	}
 };
