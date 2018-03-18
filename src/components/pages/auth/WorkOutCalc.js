@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Paper from "material-ui/Paper";
 
-export default class Dashboard extends React.Component {
+export default class WorkOutCalc extends React.Component {
 	render() {
-		return <div style={styles.root}>DashBoard main</div>;
+		return <div style={styles.root}>Workout Calculator</div>;
 	}
 }
 

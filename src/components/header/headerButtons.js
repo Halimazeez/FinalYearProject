@@ -51,6 +51,7 @@ export default class HeaderButtons extends React.Component {
 	render() {
 		const { anchorEl } = this.state;
 		const open = Boolean(anchorEl);
+
 		const authedNav = this.state.isAuthed ? (
 			<div>
 				<IconButton onClick={this.handleMenu} color="inherit">

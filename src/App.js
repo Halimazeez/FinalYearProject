@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, redirect, Router } from "react-router-dom";
+import { Route, Redirect, Router, Switch } from "react-router-dom";
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import "typeface-roboto";
@@ -9,7 +9,11 @@ import { Header } from "./components/header/header";
 import HomePage from "./components/pages/HomePage";
 import LoginPage from "./components/pages/LoginPage";
 import RegisterPage from "./components/pages/RegisterPage";
-import DashBoard from "./components/pages/auth/DashBoard";
+
+import DashBoard from "./components/pages/auth/";
+import OneRepMaxCalc from "./components/pages/auth/OneRep";
+import WorkOutCalc from "./components/pages/auth/WorkOutCalc";
+import SideNav from "./components/pages/auth/SideNav";
 
 import { firebaseAuth } from "./components/helpers/dbCon";
 
@@ -38,6 +42,9 @@ export default class App extends React.Component {
 					<Route path="/login" exact component={LoginPage} />
 					<Route path="/register" exact component={RegisterPage} />
 					<Route path="/dashboard" exact component={DashBoard} />
+
+					<Route path="/onerepmaxcalc" component={OneRepMaxCalc} />
+					<Route path="/workoutcalc" component={WorkOutCalc} />
 				</MuiThemeProvider>
 			</Router>
 		);
