@@ -2,11 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Paper from "material-ui/Paper";
 
-export default class OneRepCalc extends React.Component {
-	render() {
-		return <div style={styles.root}>OneRep Calculator</div>;
-	}
-}
+export const OneRepCalc = () => <div>OneRep Calculator</div>;
+
+export default OneRepCalc;
 
 const styles = {
 	root: {

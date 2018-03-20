@@ -1,6 +1,6 @@
 import SideNav from "./auth/SideNav";
 import React from "react";
-import { Header } from "../header/header";
+
 import PropTypes from "prop-types";
 
 export default class Main extends React.Component {
@@ -13,8 +13,6 @@ export default class Main extends React.Component {
 	render() {
 		return (
 			<div style={styles.root}>
-				<Header />
-
 				<SideNav />
 
 				<div style={styles.container}>{this.props.children}</div>

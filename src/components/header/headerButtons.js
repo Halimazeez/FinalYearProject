@@ -6,12 +6,14 @@ import { Link } from "react-router-dom";
 import Button from "material-ui/Button";
 import { firebaseAuth } from "../helpers/dbCon";
 import { logout } from "../helpers/auth";
+import MenuIcon from "material-ui-icons/Menu";
 
 export default class HeaderButtons extends React.Component {
 	constructor() {
 		super();
 
 		this.state = {
+			loading: null,
 			isAuthed: false,
 			anchorEl: null
 		};
@@ -37,7 +39,7 @@ export default class HeaderButtons extends React.Component {
 			if (user) {
 				this.setState({
 					isAuthed: true,
-					loading: false
+					loading: true
 				});
 			} else {
 				// else set auth token to false
@@ -48,12 +50,16 @@ export default class HeaderButtons extends React.Component {
 			}
 		});
 	}
+
 	render() {
 		const { anchorEl } = this.state;
 		const open = Boolean(anchorEl);
 
 		const authedNav = this.state.isAuthed ? (
-			<div>
+			<div style={styles.rightButtons}>
+				<IconButton color="inherit">
+					<Home />
+				</IconButton>
 				<IconButton onClick={this.handleMenu} color="inherit">
 					<AccountCircle />
 				</IconButton>
@@ -74,10 +80,13 @@ export default class HeaderButtons extends React.Component {
 					<MenuItem onClick={this.handleClose}>Profile</MenuItem>
 					<MenuItem onClick={this.handleProfile}>Logout</MenuItem>
 				</Menu>
+				<Link to="/dashboard" style={styles.link}>
+
+				</Link>
 			</div>
 		) : (
 			<div style={styles.loginButton}>
-				<Link to="/login" style={styles.loginLink}>
+				<Link to="/login" style={styles.link}>
 					<Button color="inherit">Login</Button>
 				</Link>
 			</div>
@@ -86,11 +95,7 @@ export default class HeaderButtons extends React.Component {
 		//home button by default
 		const topbarButtons = (
 			<div style={styles.rightButtons}>
-				<Link to="/" style={styles.homeBtn}>
-					<IconButton color="inherit">
-						<Home />
-					</IconButton>
-				</Link>
+
 				{authedNav}
 			</div>
 		);
@@ -103,14 +108,15 @@ const styles = {
 	rightButtons: {
 		display: "flex"
 	},
-	homeBtn: {
-		color: "inherit"
-	},
-	loginLink: {
+	link: {
 		color: "inherit",
 		textDecoration: "none"
 	},
 	loginButton: {
 		margin: "auto"
+	},
+	menuButton: {
+		marginLeft: -12,
+		marginRight: 20
 	}
 };

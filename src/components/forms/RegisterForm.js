@@ -35,7 +35,7 @@ export default class RegisterForm extends React.Component {
 	onSubmit = e => {
 		e.preventDefault();
 		createUser(this.state.email, this.state.password).catch(e =>
-			this.setState(setErrorMsg(e))
+			this.setState(setErrorMsg(e)),
 		);
 	};
 
@@ -110,6 +110,7 @@ const styles = {
 	},
 	button: {
 		width: 300,
+		marginTop: 20,
 		marginBottom: 10
 	}
 };

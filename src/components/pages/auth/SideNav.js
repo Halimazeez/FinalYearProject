@@ -10,71 +10,77 @@ import { withStyles } from "material-ui/styles";
 import { Link } from "react-router-dom";
 
 class sideNav extends React.Component {
-	constructor() {
-		super();
-		this.state = {
-			open: true
-		};
-	}
-	render() {
-		const { classes } = this.props;
-		return (
-			<div>
-				<Drawer variant="permanent" classes={{ paper: classes.paper }}>
-					<List>
-						<Link to="/onerepmaxcalc" style={styles.loginLink}>
-							<ListItem button>
-								<InboxIcon />
-								{/* }<ListItemText primary="One-Rep-Max" /> */}
-							</ListItem>
-						</Link>
+  constructor(props) {
+    super(props);
+    this.state = {
 
-						<Link to="/workoutcalc" style={styles.loginLink}>
-							<ListItem button>
-								<InboxIcon />
-								{/* <ListItemText primary="Workout Calculator" />  */}
-							</ListItem>
-						</Link>
-					</List>
+      anchor: "left"
+    };
+  }
 
-					<Divider />
+  render() {
+    const { classes } = this.props;
+    return (
+      <div>
+        <Drawer
+          variant="persistent"
+          classes={{ paper: classes.paper }}
+          anchor="left"
+          open={this.props.sideNavOpen}
+        >
+          <List>
+            <Link to="/onerepmaxcalc" style={styles.loginLink}>
+              <ListItem button divider>
+                <InboxIcon />
+                {/* }<ListItemText primary="One-Rep-Max" /> */}
+              </ListItem>
+            </Link>
 
-					<List>
-						<ListItem button>
-							<ListItemIcon>
-								<InboxIcon />
-							</ListItemIcon>
-							{/*<ListItemText primary="About Us" /> */}
-						</ListItem>
+            <Link to="/workoutcalc" style={styles.loginLink}>
+              <ListItem button divider>
+                <InboxIcon />
+                {/* <ListItemText primary="Workout Calculator" />  */}
+              </ListItem>
+            </Link>
+          </List>
 
-						<ListItem button>
-							<ListItemIcon>
-								<DraftsIcon />
-							</ListItemIcon>
-							{/*<ListItemText primary="Contact" /> */}
-						</ListItem>
-					</List>
-				</Drawer>
-			</div>
-		);
-	}
+          <List>
+            <ListItem button disabled>
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+              {/*<ListItemText primary="About Us" /> */}
+            </ListItem>
+
+            <ListItem button disabled>
+              <ListItemIcon>
+                <DraftsIcon />
+              </ListItemIcon>
+              {/*<ListItemText primary="Contact" /> */}
+            </ListItem>
+          </List>
+        </Drawer>
+      </div>
+    );
+  }
 }
 
 sideNav.propTypes = {
-	classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired
 };
 
 const styles = {
-	paper: {
-		position: "static",
-		width: 60,
-		height: "calc(100vh - 64px)",
-		backgroundColor: "#666"
-	},
-	loginLink: {
-		color: "#fff",
-		textDecoration: "none"
-	}
+  paper: {
+    top: 64,
+
+    width: 60,
+    height: "calc(100vh - 64px)",
+    backgroundColor: "#666"
+  },
+  loginLink: {
+    color: "#fff",
+    textDecoration: "none"
+  }
 };
 
 export default withStyles(styles)(sideNav);

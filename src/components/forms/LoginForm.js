@@ -8,7 +8,7 @@ import { login, resetPassword } from "../helpers/auth";
 //Login error
 function setErrorMsg(error) {
 	return {
-		loginMessage: error
+		loginError: error
 	};
 }
 
@@ -18,7 +18,7 @@ export default class LoginForm extends React.Component {
 		this.state = {
 			email: "",
 			password: "",
-			loginMessage: null
+			loginError: null
 		};
 	}
 
@@ -33,7 +33,7 @@ export default class LoginForm extends React.Component {
 		this.setState(setErrorMsg(""));
 		e.preventDefault();
 		login(this.state.email, this.state.password).catch(error => {
-			this.setState(setErrorMsg("Invalid Email or Password."));
+			this.setState(setErrorMsg("Invalid Credentials"));
 		});
 	};
 
@@ -61,6 +61,11 @@ export default class LoginForm extends React.Component {
 						onChange={this.onChange}
 						required
 					/>
+					{this.state.loginError && (
+						<div>
+							<p>Error:{this.state.loginError}</p>
+						</div>
+					)}
 					<Button
 						type="submit"
 						style={styles.button}
