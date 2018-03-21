@@ -9,114 +9,104 @@ import { logout } from "../helpers/auth";
 import MenuIcon from "material-ui-icons/Menu";
 
 export default class HeaderButtons extends React.Component {
-	constructor() {
-		super();
+  constructor() {
+    super();
 
-		this.state = {
-			loading: null,
-			isAuthed: false,
-			anchorEl: null
-		};
-	}
+    this.state = {
+      loading: null,
+      isAuthed: false,
+      anchorEl: null
+    };
+  }
 
-	handleMenu = event => {
-		this.setState({ anchorEl: event.currentTarget });
-	};
+  handleMenu = event => {
+    this.setState({ anchorEl: event.currentTarget });
+  };
 
-	handleClose = () => {
-		this.setState({ anchorEl: null });
-	};
+  handleClose = () => {
+    this.setState({ anchorEl: null });
+  };
 
-	handleProfile = () => {
-		this.handleClose();
-		logout();
-	};
+  handleProfile = () => {
+    this.handleClose();
+    logout();
+  };
 
-	//check to see if user is authenticated with firebase
-	componentWillMount() {
-		firebaseAuth().onAuthStateChanged(user => {
-			//if user is authed set auth state to true
-			if (user) {
-				this.setState({
-					isAuthed: true,
-					loading: true
-				});
-			} else {
-				// else set auth token to false
-				this.setState({
-					isAuthed: false,
-					loading: false
-				});
-			}
-		});
-	}
+  //check to see if user is authenticated with firebase
+  componentWillMount() {
+    firebaseAuth().onAuthStateChanged(user => {
+      //if user is authed set auth state to true
+      if (user) {
+        this.setState({
+          isAuthed: true,
+          loading: true
+        });
+      } else {
+        // else set auth token to false
+        this.setState({
+          isAuthed: false,
+          loading: false
+        });
+      }
+    });
+  }
 
-	render() {
-		const { anchorEl } = this.state;
-		const open = Boolean(anchorEl);
+  render() {
+    const { anchorEl } = this.state;
+    const open = Boolean(anchorEl);
 
-		const authedNav = this.state.isAuthed ? (
-			<div style={styles.rightButtons}>
-				<IconButton color="inherit">
-					<Home />
-				</IconButton>
-				<IconButton onClick={this.handleMenu} color="inherit">
-					<AccountCircle />
-				</IconButton>
-				<Menu
-					id="menu-appbar"
-					anchorEl={anchorEl}
-					anchorOrigin={{
-						vertical: "top",
-						horizontal: "left"
-					}}
-					transformOrigin={{
-						vertical: "top",
-						horizontal: "left"
-					}}
-					open={open}
-					onClose={this.handleClose}
-				>
-					<MenuItem onClick={this.handleClose}>Profile</MenuItem>
-					<MenuItem onClick={this.handleProfile}>Logout</MenuItem>
-				</Menu>
-				<Link to="/dashboard" style={styles.link}>
+    const authedNav = this.state.isAuthed ? (
+      <div style={styles.rightButtons} >
+        <IconButton color="inherit" >
+          <Home />
+        </IconButton>
+        <IconButton onClick={this.handleMenu} color="inherit">
+          <AccountCircle />
+        </IconButton>
+        <Menu
+          id="menu-appbar"
+          anchorEl={anchorEl}
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "left"
+          }}
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "left"
+          }}
+          open={open}
+          onClose={this.handleClose}
+        >
+          <MenuItem onClick={this.handleClose}>Profile</MenuItem>
+          <MenuItem onClick={this.handleProfile}>Logout</MenuItem>
+        </Menu>
+        <Link to="/dashboard" style={styles.link} />
+      </div>
+    ) : (
+      <div style={styles.loginButton}>
+        <Link to="/login" style={styles.link}>
+          <Button color="inherit">Login</Button>
+        </Link>
+      </div>
+    );
 
-				</Link>
-			</div>
-		) : (
-			<div style={styles.loginButton}>
-				<Link to="/login" style={styles.link}>
-					<Button color="inherit">Login</Button>
-				</Link>
-			</div>
-		);
-
-		//home button by default
-		const topbarButtons = (
-			<div style={styles.rightButtons}>
-
-				{authedNav}
-			</div>
-		);
-
-		return topbarButtons;
-	}
+    return authedNav;
+  }
 }
 
 const styles = {
-	rightButtons: {
-		display: "flex"
-	},
-	link: {
-		color: "inherit",
-		textDecoration: "none"
-	},
-	loginButton: {
-		margin: "auto"
-	},
-	menuButton: {
-		marginLeft: -12,
-		marginRight: 20
-	}
+  rightButtons: {
+    display: "flex",
+  },
+  link: {
+    color: "inherit",
+    textDecoration: "none"
+  },
+  loginButton: {
+    margin: "auto"
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20
+  }
 };

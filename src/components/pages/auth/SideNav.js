@@ -7,13 +7,12 @@ import InboxIcon from "material-ui-icons/Inbox";
 import DraftsIcon from "material-ui-icons/Drafts";
 import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 class sideNav extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
       anchor: "left"
     };
   }
@@ -29,18 +28,20 @@ class sideNav extends React.Component {
           open={this.props.sideNavOpen}
         >
           <List>
-            <Link to="/onerepmaxcalc" style={styles.loginLink}>
+            <Link to="/dashboard" style={styles.loginLink}>
               <ListItem button divider>
                 <InboxIcon />
                 {/* }<ListItemText primary="One-Rep-Max" /> */}
               </ListItem>
+              <Redirect to="/dashboard" />
             </Link>
 
-            <Link to="/workoutcalc" style={styles.loginLink}>
+            <Link to="/dashboard" style={styles.loginLink}>
               <ListItem button divider>
                 <InboxIcon />
                 {/* <ListItemText primary="Workout Calculator" />  */}
               </ListItem>
+              <Redirect to="/dashboard" />
             </Link>
           </List>
 
@@ -72,7 +73,6 @@ sideNav.propTypes = {
 const styles = {
   paper: {
     top: 64,
-
     width: 60,
     height: "calc(100vh - 64px)",
     backgroundColor: "#666"
@@ -83,4 +83,5 @@ const styles = {
   }
 };
 
+//export with paper class style wrap overwrite
 export default withStyles(styles)(sideNav);

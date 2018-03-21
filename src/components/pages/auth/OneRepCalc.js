@@ -7,10 +7,7 @@ export const OneRepCalc = () => <div>OneRep Calculator</div>;
 export default OneRepCalc;
 
 const styles = {
-	root: {
-		margin: "auto",
-		margin: "0 auto",
-		left: 50,
-		display: "flex"
-	}
+  root: {
+    margin: "auto"
+  }
 };

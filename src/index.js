@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import { Router, Route } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 import registerServiceWorker from "./registerServiceWorker";
 
 import HomePage from "./components/pages/HomePage";
@@ -40,10 +40,12 @@ ReactDOM.render(
     <MuiThemeProvider theme={theme}>
       <Route path="/login" exact component={LoginPage} />
       <Route path="/register" exact component={RegisterPage} />
-      <Route path="/dashboard" component={App} />
-      <Route path="dashy" component={DashBoard} />
-      <Route path="onerepmaxcalc" component={OneRepCalc} />
-      <Route path="workoutcalc" component={WorkOutCalc} />
+      <Route path="/dashboard" exact component={App} />
+      <Switch>
+        <Route path="/dashboard" exact component={DashBoard} />
+        <Route path="/dashboard" exact component={OneRepCalc} />
+        <Route path="/dashboard" exact component={WorkOutCalc} />
+      </Switch>
     </MuiThemeProvider>
   </Router>,
   document.getElementById("root")

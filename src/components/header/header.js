@@ -15,7 +15,7 @@ export default class Header extends React.Component {
           <IconButton
             style={styles.menuButton}
             color="inherit"
-            onClick={this.props.handleChangeRequestSideNav}
+            onClick={this.props.toggleSideNav}
           >
             <MenuIcon />
           </IconButton>
@@ -30,8 +30,9 @@ export default class Header extends React.Component {
   }
 }
 Header.propTypes = {
-  handleChangeRequestNavDrawer: PropTypes.func
+  toggleSideNav: PropTypes.func
 };
+
 const styles = {
   flex: {
     flex: 1
