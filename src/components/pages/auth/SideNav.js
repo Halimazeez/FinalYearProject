@@ -28,20 +28,18 @@ class sideNav extends React.Component {
           open={this.props.sideNavOpen}
         >
           <List>
-            <Link to="/dashboard" style={styles.loginLink}>
+            <Link to="/dashboard/onerepcalc" style={styles.loginLink}>
               <ListItem button divider>
                 <InboxIcon />
                 {/* }<ListItemText primary="One-Rep-Max" /> */}
               </ListItem>
-              <Redirect to="/dashboard" />
             </Link>
 
-            <Link to="/dashboard" style={styles.loginLink}>
+            <Link to="/dashboard/workoutcalc" style={styles.loginLink}>
               <ListItem button divider>
                 <InboxIcon />
                 {/* <ListItemText primary="Workout Calculator" />  */}
               </ListItem>
-              <Redirect to="/dashboard" />
             </Link>
           </List>
 

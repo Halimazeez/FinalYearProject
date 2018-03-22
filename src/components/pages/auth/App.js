@@ -1,5 +1,5 @@
 import React from "react";
-import { Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Paper from "material-ui/Paper";
 import SideNav from "./SideNav";
 import PropTypes from "prop-types";
@@ -10,8 +10,8 @@ import WorkOutCalc from "./WorkOutCalc";
 import history from "../../helpers/history";
 
 export default class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       sideNavOpen: true
     };
@@ -30,7 +30,7 @@ export default class App extends React.Component {
       },
       container: {
         width: "100%",
-        paddingLeft: this.state.sideNavOpen ? 61 : 0,
+        paddingLeft: this.state.sideNavOpen ? 60 : 0,
         paddingTop: "64px",
         textAlign: "center",
         margin: "auto"
@@ -52,9 +52,7 @@ export default class App extends React.Component {
 
         <main style={styles.container} className="app">
           <Paper style={styles.paper}>
-            {/*}  <DashBoard />
-						<OneRepCalc />
-						<WorkOutCalc /> */}
+            <div>dasd</div>
           </Paper>
         </main>
       </div>

@@ -1,12 +1,11 @@
 import React from "react";
-import { AccountCircle, Home } from "material-ui-icons/";
+import { AccountCircle, Home, MenuIcon, Dashboard } from "material-ui-icons/";
 import IconButton from "material-ui/IconButton";
 import Menu, { MenuItem } from "material-ui/Menu";
 import { Link } from "react-router-dom";
 import Button from "material-ui/Button";
 import { firebaseAuth } from "../helpers/dbCon";
 import { logout } from "../helpers/auth";
-import MenuIcon from "material-ui-icons/Menu";
 
 export default class HeaderButtons extends React.Component {
   constructor() {
@@ -27,39 +26,25 @@ export default class HeaderButtons extends React.Component {
     this.setState({ anchorEl: null });
   };
 
-  handleProfile = () => {
+  handleLogout = () => {
     this.handleClose();
     logout();
   };
 
   //check to see if user is authenticated with firebase
-  componentWillMount() {
-    firebaseAuth().onAuthStateChanged(user => {
-      //if user is authed set auth state to true
-      if (user) {
-        this.setState({
-          isAuthed: true,
-          loading: true
-        });
-      } else {
-        // else set auth token to false
-        this.setState({
-          isAuthed: false,
-          loading: false
-        });
-      }
-    });
-  }
 
   render() {
     const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
 
-    const authedNav = this.state.isAuthed ? (
-      <div style={styles.rightButtons} >
-        <IconButton color="inherit" >
-          <Home />
-        </IconButton>
+    //hold authenticated header right button state
+    const authedButtons = this.props.isAuthed ? (
+      <div style={styles.rightButtons}>
+        <Link to="/dashboard" style={styles.link}>
+          <IconButton color="inherit">
+            <Dashboard />
+          </IconButton>
+        </Link>
         <IconButton onClick={this.handleMenu} color="inherit">
           <AccountCircle />
         </IconButton>
@@ -78,25 +63,30 @@ export default class HeaderButtons extends React.Component {
           onClose={this.handleClose}
         >
           <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-          <MenuItem onClick={this.handleProfile}>Logout</MenuItem>
+          <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
         </Menu>
-        <Link to="/dashboard" style={styles.link} />
       </div>
     ) : (
+      //hold not authenticated auth state
       <div style={styles.loginButton}>
-        <Link to="/login" style={styles.link}>
+        <Link to="/home" style={styles.link}>
+          <IconButton color="inherit">
+            <Home />
+          </IconButton>
+        </Link>
+        <Link to="/home/login" style={styles.link}>
           <Button color="inherit">Login</Button>
         </Link>
       </div>
     );
 
-    return authedNav;
+    return authedButtons;
   }
 }
 
 const styles = {
   rightButtons: {
-    display: "flex",
+    display: "flex"
   },
   link: {
     color: "inherit",

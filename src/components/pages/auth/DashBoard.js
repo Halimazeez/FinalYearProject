@@ -4,7 +4,7 @@ import Paper from "material-ui/Paper";
 
 export default class Dashboard extends React.Component {
   render() {
-    return <div style={styles.root}>DashBoard</div>;
+    return <div style={styles.root}>dashydashy</div>;
   }
 }
 
