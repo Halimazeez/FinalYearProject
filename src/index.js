@@ -43,7 +43,6 @@ ReactDOM.render(
       <Route path="/home" component={Header} />
       <Route path="/home/login" component={LoginPage} />
       <Route path="/home/register" component={RegisterPage} />
-
       <Route path="/dashboard" component={App} />
       <Route path="/dashboard/onerepcalc" component={OneRepCalc} />
       <Route path="/dashboard/workoutcalc" component={WorkOutCalc} />

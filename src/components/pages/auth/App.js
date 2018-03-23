@@ -13,7 +13,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sideNavOpen: true
+      sideNavOpen: false
     };
   }
 
@@ -31,14 +31,7 @@ export default class App extends React.Component {
       container: {
         width: "100%",
         paddingLeft: this.state.sideNavOpen ? 60 : 0,
-        paddingTop: "64px",
-        textAlign: "center",
-        margin: "auto"
-      },
-      paper: {
-        //  height: "calc(100vh - 64px)",
-        overflow: "auto",
-        textAlign: "center"
+        paddingTop: 100
       }
     };
 
@@ -49,11 +42,8 @@ export default class App extends React.Component {
 
         {/* get value of sideNavOpen*/}
         <SideNav sideNavOpen={this.state.sideNavOpen} />
-
         <main style={styles.container} className="app">
-          <Paper style={styles.paper}>
-            <div>dasd</div>
-          </Paper>
+          <OneRepCalc />
         </main>
       </div>
     );
