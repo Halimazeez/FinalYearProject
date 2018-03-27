@@ -9,11 +9,13 @@ import OneRepCalc from "./OneRepCalc";
 import WorkOutCalc from "./WorkOutCalc";
 import history from "../../helpers/history";
 
+import { Home } from "material-ui-icons/";
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sideNavOpen: false
+      sideNavOpen: true
     };
   }
 

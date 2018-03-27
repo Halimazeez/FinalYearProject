@@ -11,19 +11,6 @@ import { Home } from "material-ui-icons/";
 const DashBoard = () => {
   return;
 };
-/*}
-      <div className={classes.containerPaper}>
-        <Grid container className={classes.root}>
-          <Grid container>
-            <Grid item xs={6} >
-              <Paper className={classes.paper}>
-                <Typography varient="subheader">Bench Press</Typography>
-              </Paper>
-            </Grid>
-          </Grid>
-        </Grid>
-      </div>
-      */
 
 const styles = {};
 

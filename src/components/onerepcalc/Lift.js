@@ -9,8 +9,11 @@ import { FormLabel } from "material-ui/Form";
 import Divider from "material-ui/Divider";
 
 class Lift extends React.Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
-    const { title, Icon, classes } = this.props;
+    const { classes, text } = this.props;
 
     const styles = {
       content: {
@@ -28,34 +31,22 @@ class Lift extends React.Component {
         //width: "100%"
       },
 
-      liftHeader: {
-        display: "flex",
-      },
+      liftHeader: {},
       headhead: {
-        display: "block",
         padding: 5
       }
     };
 
     return (
       <Paper>
-        <Grid xs={12} style={styles.liftHeader}>
-          <Icon style={styles.icon} />
-
-          <FormLabel style={styles.headhead}>{title}</FormLabel>
-        </Grid>
-        <Divider />
-        <Grid xs={2}>
-          <FormLabel>Aaaa</FormLabel>
-        </Grid>
+        <FormLabel>{text}</FormLabel>
       </Paper>
     );
   }
 }
 
 Lift.propTypes = {
-  Icon: PropTypes.any,
-  Title: PropTypes.string,
+  text: PropTypes.string,
   classes: PropTypes.object.isRequired
 };
 
