@@ -72,7 +72,6 @@ const styles = {
   paper: {
     top: 64,
     width: 60,
-    height: "calc(100vh - 64px)",
     backgroundColor: "#666"
   },
   loginLink: {

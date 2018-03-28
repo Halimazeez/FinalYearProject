@@ -12,27 +12,27 @@ import { Home } from "material-ui-icons/";
 export const OneRepCalc = () => {
   return (
     <Grid container style={styles.root} justify="center">
-      <Grid item xs={10} alignItems="center">
+      <Grid item xs={10}>
         <Panels Icon={Home} title="Bench Press">
-          <Lift text="Bench Press" />
+          <Lift text="Bench Press" max={100}/>
         </Panels>
       </Grid>
 
       <Grid item xs={10}>
         <Panels Icon={Home} title="Deadlift">
-          <Lift text="Deadlift" />
+          <Lift text="Deadlift" max={200}/>
         </Panels>
       </Grid>
 
       <Grid item xs={10}>
         <Panels Icon={Home} title="Squat">
-          <Lift text="Squat" />
+          <Lift text="Squat" max={300}/>
         </Panels>
       </Grid>
 
       <Grid item xs={10}>
-        <Panels Icon={Home} title="Overhead">
-          <Lift text="Overhead Press" />
+        <Panels Icon={Home} title="Overhead Press">
+          <Lift text="Overhead Press" max={400}/>
         </Panels>
       </Grid>
     </Grid>
@@ -43,7 +43,6 @@ export default OneRepCalc;
 
 const styles = {
   root: {
-    margin: 0
-    //width: "100%"
+    flexGrow: 1
   }
 };

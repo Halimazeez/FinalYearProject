@@ -11,6 +11,7 @@ import Lift from "./Lift";
 import { Home } from "material-ui-icons/";
 import Icon from "material-ui/Icon";
 import Grid from "material-ui/Grid";
+import Divider from "material-ui/Divider";
 
 class Panels extends React.Component {
   constructor(props) {
@@ -22,12 +23,11 @@ class Panels extends React.Component {
       <ExpansionPanel>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
           <Icon className={classes.icon}>{Icon}</Icon>
-          <Grid item xs={4}>
-            <Typography>{title}</Typography>
-          </Grid>
+
+          <Typography className={classes.header}>{title}</Typography>
         </ExpansionPanelSummary>
-        {this.props.children}
-        <ExpansionPanelDetails />
+        <Divider />
+        <ExpansionPanelDetails>{this.props.children}</ExpansionPanelDetails>
       </ExpansionPanel>
     );
   }
@@ -44,7 +44,11 @@ const styles = {
     flexGrow: 1
   },
   icon: {
-    paddingRight: 10
+    paddingRight: 15,
+    lineHeight: 29
+  },
+  header: {
+    fontSize: 20
   }
 };
 export default withStyles(styles)(Panels);

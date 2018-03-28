@@ -7,40 +7,78 @@ import Typography from "material-ui/Typography";
 import PropTypes from "prop-types";
 import { FormLabel } from "material-ui/Form";
 import Divider from "material-ui/Divider";
+import TextField from "material-ui/TextField";
+import Progress from "./progress";
+import Button from "material-ui/Button";
 
 class Lift extends React.Component {
   constructor(props) {
     super(props);
-  }
-  render() {
-    const { classes, text } = this.props;
-
-    const styles = {
-      content: {
-        padding: "5px 10px",
-        marginLeft: 90,
-        height: 80
-      },
-      icon: {
-        width: 20,
-        maxWidth: "100%",
-        color: "grey",
-        padding: 5
-      },
-      paper: {
-        //width: "100%"
-      },
-
-      liftHeader: {},
-      headhead: {
-        padding: 5
-      }
+    this.state = {
+      onerepmax: null,
+      weight: "",
+      reps: ""
     };
+  }
+
+  calculateMax = () => {
+    this.setState({
+      // Use Math.round with one-rep-max formula to get int value
+      onerepmax: Math.round(this.state.weight * (1 + this.state.reps / 30))
+    });
+  };
+
+  onChange = e =>
+    this.setState({
+      [e.target.id]: e.target.value
+    });
+
+  render() {
+    const { classes, text, max } = this.props;
+    const { onerepmax } = this.state;
 
     return (
-      <Paper>
-        <FormLabel>{text}</FormLabel>
-      </Paper>
+      <Grid container className={classes.root}>
+        <Grid container justify="center" className={classes.liftContainer}>
+          <Grid item md={4} xs={8}>
+            <TextField
+              id="reps"
+              label="Reps"
+              placeholder="Enter Reps"
+              type="number"
+              className={classes.inputs}
+              onChange={this.onChange}
+              value={this.state.reps}
+              onBlur={this.calculateMax}
+            />
+          </Grid>
+
+          <Grid item md={2} xs={8}>
+            <Typography className={classes.liftAt}>At:</Typography>
+          </Grid>
+
+          <Grid item md={4} xs={8}>
+            <TextField
+              id="weight"
+              label="Weight"
+              placeholder="Enter Weight"
+              type="number"
+              className={classes.inputs}
+              onChange={this.onChange}
+              value={this.state.weight}
+              onBlur={this.calculateMax}
+            />
+          </Grid>
+
+          <Grid item xs={11} className={classes.progress}>
+            <Typography variant="subheading">
+              {text} Strength Index:{onerepmax}
+            </Typography>
+
+            <Progress onerepmax={onerepmax} max={max}/>
+          </Grid>
+        </Grid>
+      </Grid>
     );
   }
 }
@@ -50,14 +88,24 @@ Lift.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-//  <span style={styles.iconSpan}>
-//  <Icon style={styles.icon} />
-//  </span>
+const styles = {
+  root: {
+    //  flexGrow: 1,
+    padding: 10
+  },
+  liftAt: {
+    paddingTop: 25,
+    textAlign: "center"
+  },
+  inputs: {
+    width: "100%",
+  },
+  progress: {
+    marginTop: 20,
+  },
+  liftContainer: {
+    paddingBottom: 50
+  }
+};
 
-/*  <div style={styles.content}>
-    <span style={styles.text}>{Icon}</span>
-    <span style={styles.number}>{title}</span>
-  </div>
-  */
-
-export default Lift;
+export default withStyles(styles)(Lift);

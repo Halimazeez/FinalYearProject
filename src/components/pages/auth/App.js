@@ -8,10 +8,10 @@ import DashBoard from "./DashBoard";
 import OneRepCalc from "./OneRepCalc";
 import WorkOutCalc from "./WorkOutCalc";
 import history from "../../helpers/history";
-
+import { withStyles } from "material-ui/styles";
 import { Home } from "material-ui-icons/";
 
-export default class App extends React.Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,31 +26,32 @@ export default class App extends React.Component {
   }
 
   render() {
-    const styles = {
-      root: {
-        display: "flex"
-      },
-      container: {
-        width: "100%",
-        paddingLeft: this.state.sideNavOpen ? 60 : 0,
-        paddingTop: 100
-      }
-    };
+    const { classes } = this.props;
 
     return (
-      <div style={styles.root}>
+      <div className={classes.root}>
         {/* pass Header component the state to toggle*/}
         <Header toggleSideNav={this.toggleSideNav.bind(this)} />
 
         {/* get value of sideNavOpen*/}
         <SideNav sideNavOpen={this.state.sideNavOpen} />
-        <main style={styles.container} className="app">
-          <OneRepCalc />
-        </main>
+        <main className={classes.container}>{this.props.children}</main>
       </div>
     );
   }
 }
+
 App.propTypes = {
-  children: PropTypes.element
+  children: PropTypes.node,
+  classes: PropTypes.object.isRequired
 };
+const styles = {
+  root: {
+    display: "flex"
+  },
+  container: {
+    paddingTop: 80,
+  }
+};
+
+export default withStyles(styles)(App);
