@@ -13,7 +13,6 @@ class sideNav extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      anchor: "left"
     };
   }
 

@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 import HeaderButtons from "./headerButtons";
 import { firebaseAuth } from "../helpers/dbCon";
 
+
 export default class Header extends React.Component {
   constructor() {
     super();

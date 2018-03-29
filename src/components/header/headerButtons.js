@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Button from "material-ui/Button";
 import { firebaseAuth } from "../helpers/dbCon";
 import { logout } from "../helpers/auth";
+import history from '../helpers/history';
 
 export default class HeaderButtons extends React.Component {
   constructor() {
@@ -29,6 +30,11 @@ export default class HeaderButtons extends React.Component {
   handleLogout = () => {
     this.handleClose();
     logout();
+  };
+
+  handleProfile = () => {
+    this.handleClose();
+    history.push("/dashboard/profile");
   };
 
   //check to see if user is authenticated with firebase
@@ -62,7 +68,7 @@ export default class HeaderButtons extends React.Component {
           open={open}
           onClose={this.handleClose}
         >
-          <MenuItem onClick={this.handleClose}>Profile</MenuItem>
+          <MenuItem onClick={this.handleProfile}>Profile</MenuItem>
           <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
         </Menu>
       </div>

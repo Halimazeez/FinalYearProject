@@ -2,10 +2,10 @@ import React from "react";
 
 const data = {
   progress: {
-    bench: 100,
-    squat: 200,
-    dead: 300,
-    ohp: 50
+    benchMax: 110,
+    squatMax: 200,
+    deadMax: 300,
+    ohpMax: 50
   }
 };
 export default data;

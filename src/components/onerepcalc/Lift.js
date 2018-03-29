@@ -8,8 +8,9 @@ import PropTypes from "prop-types";
 import { FormLabel } from "material-ui/Form";
 import Divider from "material-ui/Divider";
 import TextField from "material-ui/TextField";
-import Progress from "./progress";
 import Button from "material-ui/Button";
+
+import Progress from "./progress";
 
 class Lift extends React.Component {
   constructor(props) {
@@ -36,6 +37,8 @@ class Lift extends React.Component {
   render() {
     const { classes, text, max } = this.props;
     const { onerepmax } = this.state;
+
+    console.log("onerepmax: " + this.state.onerepmax);
 
     return (
       <Grid container className={classes.root}>
@@ -72,10 +75,9 @@ class Lift extends React.Component {
 
           <Grid item xs={11} className={classes.progress}>
             <Typography variant="subheading">
-              {text} Strength Index:{onerepmax}
+              {text} One-Rep-Max: {this.state.onerepmax}
             </Typography>
-
-            <Progress onerepmax={onerepmax} max={max}/>
+            <Progress max={max} value={onerepmax} />
           </Grid>
         </Grid>
       </Grid>
@@ -85,12 +87,14 @@ class Lift extends React.Component {
 
 Lift.propTypes = {
   text: PropTypes.string,
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  children: PropTypes.node,
+  calculateMax: PropTypes.func
 };
 
 const styles = {
   root: {
-    //  flexGrow: 1,
+    flexGrow: 1,
     padding: 10
   },
   liftAt: {
@@ -98,10 +102,10 @@ const styles = {
     textAlign: "center"
   },
   inputs: {
-    width: "100%",
+    width: "100%"
   },
   progress: {
-    marginTop: 20,
+    marginTop: 20
   },
   liftContainer: {
     paddingBottom: 50

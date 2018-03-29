@@ -1,5 +1,6 @@
 import React from "react";
 import { createUser } from "../helpers/auth";
+import history from "../helpers/history";
 import Paper from "material-ui/Paper";
 import Button from "material-ui/Button";
 import TextField from "material-ui/TextField";
@@ -37,6 +38,7 @@ export default class RegisterForm extends React.Component {
 		createUser(this.state.email, this.state.password).catch(e =>
 			this.setState(setErrorMsg(e)),
 		);
+		history.push("/dashboard");
 	};
 
 	render() {

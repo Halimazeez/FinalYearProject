@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import Paper from "material-ui/Paper";
 import { login, resetPassword } from "../helpers/auth";
 import Typography from "material-ui/Typography";
+import history from "../helpers/history";
+import { firebaseAuth } from "../helpers/dbCon";
 
 //Login error
 function setErrorMsg(error) {
@@ -42,7 +44,9 @@ export default class LoginForm extends React.Component {
     return (
       <form style={styles.container} onSubmit={this.onSubmit}>
         <Paper style={styles.paper}>
-          <Typography variant="title" color="inherit" style={styles.typo} >Login</Typography>
+          <Typography variant="title" color="inherit" style={styles.typo}>
+            Login
+          </Typography>
           <TextField
             id="email"
             label="Email"
@@ -119,7 +123,7 @@ const styles = {
   buttons: {
     marginTop: 5
   },
-	typo: {
-		fontSize: 30
-	}
+  typo: {
+    fontSize: 30
+  }
 };

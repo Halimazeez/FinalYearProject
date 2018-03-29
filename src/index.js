@@ -14,6 +14,7 @@ import DashBoard from "./components/pages/auth/DashBoard";
 import OneRepCalc from "./components/pages/auth/OneRepCalc";
 import WorkOutCalc from "./components/pages/auth/WorkOutCalc";
 import SideNav from "./components/pages/auth/SideNav";
+import Profile from "./components/pages/auth/Profile"
 
 import Header from "./components/header/header";
 
@@ -29,7 +30,7 @@ import theme from "./layout/theme";
 firebaseAuth().onAuthStateChanged(user => {
   if (user) {
     //goto dashboard if user is logged in
-    history.replace("/dashboard");
+    history.replace("/dashboard")
   } else {
     //otherwise goto login page
     history.replace("/home");
@@ -44,7 +45,8 @@ ReactDOM.render(
       <Route path="/home/login" component={LoginPage} />
       <Route path="/home/register" component={RegisterPage} />
       <Route path="/dashboard" component={App} />
-      <Route path="/dashboard" component={OneRepCalc} />
+      <Route path="/dashboard/profile" component={Profile}/>
+      <Route path="/dashboard/onerepcalc" component={OneRepCalc} />
       <Route path="/dashboard/workoutcalc" component={WorkOutCalc} />
       {/*<Route path="/" component={NotFoundPage} /> */}
     </MuiThemeProvider>
