@@ -22,18 +22,19 @@ export function resetPassword(email) {
   return firebaseAuth().sendPasswordResetEmail(email);
 }
 
-//add's register user to database
+//set register user to database with the userid as doc reference
 export function addUser(user) {
   return db
     .collection("users")
-    .add({
+    .doc(user.uid)
+    .set({
       email: user.email,
+      //uid: user.uid,
       ohp: 0,
       bench: 0,
       squat: 0,
       dead: 0
     })
-    .then(docRef => docRef)
     .catch(function(error) {
       console.error("Error adding document: ", error);
     });
