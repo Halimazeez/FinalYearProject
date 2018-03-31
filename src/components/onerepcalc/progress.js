@@ -1,9 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "material-ui/styles";
+
 import Slider, { Range } from "rc-slider";
 import "rc-slider/assets/index.css";
-import Data from "./data";
+
+import { withStyles } from "material-ui/styles";
+import Data from "./Data";
 
 const marks = {
   0: "Untrained",
@@ -18,7 +20,7 @@ const Progress = ({ value, max }) => (
       value={value}
       min={0}
       max={max}
-    //  marks={marks}
+      //  marks={marks}
     />
   </div>
 );
@@ -30,4 +32,4 @@ const styles = {
   }
 };
 
-export default withStyles(styles)(Progress);
+export default Progress;

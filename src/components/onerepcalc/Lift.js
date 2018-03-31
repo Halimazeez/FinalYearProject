@@ -1,16 +1,16 @@
 import React from "react";
 import Grid from "material-ui/Grid";
-import { withStyles } from "material-ui/styles";
+import PropTypes from "prop-types";
 
+import { withStyles } from "material-ui/styles";
 import Paper from "material-ui/Paper";
 import Typography from "material-ui/Typography";
-import PropTypes from "prop-types";
 import { FormLabel } from "material-ui/Form";
 import Divider from "material-ui/Divider";
 import TextField from "material-ui/TextField";
 import Button from "material-ui/Button";
 
-import Progress from "./progress";
+import Progress from "./Progress";
 
 class Lift extends React.Component {
   constructor(props) {

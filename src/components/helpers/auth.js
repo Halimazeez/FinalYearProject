@@ -35,7 +35,7 @@ export function addUser(user) {
       squat: 0,
       dead: 0
     })
-    .catch(function(error) {
+    .catch(error => {
       console.error("Error adding document: ", error);
     });
 }

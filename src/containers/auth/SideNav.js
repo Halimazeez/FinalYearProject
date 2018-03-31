@@ -1,13 +1,15 @@
 import React from "react";
+import { Link, Redirect } from "react-router-dom";
+import PropTypes from "prop-types";
+
 import Drawer from "material-ui/Drawer";
 import Divider from "material-ui/Divider";
 import List, { ListItem, ListItemIcon, ListItemText } from "material-ui/List";
 import Paper from "material-ui/Paper";
 import InboxIcon from "material-ui-icons/Inbox";
 import DraftsIcon from "material-ui-icons/Drafts";
-import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
-import { Link, Redirect } from "react-router-dom";
+
 
 class sideNav extends React.Component {
   constructor(props) {

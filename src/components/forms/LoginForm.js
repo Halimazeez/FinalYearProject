@@ -11,7 +11,7 @@ import { firebaseAuth } from "../helpers/dbCon";
 //Login error
 function setErrorMsg(error) {
   return {
-    loginError: error
+    loginError: error.message
   };
 }
 
@@ -36,7 +36,7 @@ export default class LoginForm extends React.Component {
     this.setState(setErrorMsg(""));
     e.preventDefault();
     login(this.state.email, this.state.password).catch(error => {
-      this.setState(setErrorMsg("Invalid Credentials"));
+      this.setState(setErrorMsg(error));
     });
   };
 
@@ -55,7 +55,6 @@ export default class LoginForm extends React.Component {
             value={this.state.email}
             onChange={this.onChange}
             type="email"
-            required
           />
           <TextField
             id="password"
@@ -64,7 +63,6 @@ export default class LoginForm extends React.Component {
             value={this.state.password}
             type="password"
             onChange={this.onChange}
-            required
           />
           {this.state.loginError && (
             <div>

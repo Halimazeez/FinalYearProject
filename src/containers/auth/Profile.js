@@ -1,15 +1,15 @@
 import React from "react";
 
-import { firebaseAuth, db } from "../../helpers/dbCon";
-import Loading from "../../helpers/loading";
-import ProfileLifts from "../../profile/ProfileLifts";
+import { firebaseAuth, db } from "../../components/helpers/dbCon";
+import Loading from "../../components/helpers/loading";
+import ProfileLifts from "../../components/profile/ProfileLifts";
+
 //import { logout } from "../helpers/auth";
+
 class Profile extends React.Component {
   constructor() {
     super();
-    //  this.user = firebaseAuth().currentUser;
 
-    //  this.unsubscribe = null;
     this.state = {
       ohp: "",
       bench: "",

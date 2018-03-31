@@ -1,5 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+
+import Lift from "./Lift";
+
 import { withStyles } from "material-ui/styles";
 import ExpansionPanel, {
   ExpansionPanelSummary,
@@ -7,8 +10,6 @@ import ExpansionPanel, {
 } from "material-ui/ExpansionPanel";
 import Typography from "material-ui/Typography";
 import ExpandMoreIcon from "material-ui-icons/ExpandMore";
-import Lift from "./Lift";
-import { Home } from "material-ui-icons/";
 import Icon from "material-ui/Icon";
 import Grid from "material-ui/Grid";
 import Divider from "material-ui/Divider";

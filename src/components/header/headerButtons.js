@@ -1,20 +1,22 @@
 import React from "react";
-import { AccountCircle, Home, MenuIcon, Dashboard } from "material-ui-icons/";
-import IconButton from "material-ui/IconButton";
-import Menu, { MenuItem } from "material-ui/Menu";
 import { Link } from "react-router-dom";
-import Button from "material-ui/Button";
+
 import { firebaseAuth } from "../helpers/dbCon";
 import { logout } from "../helpers/auth";
 import history from '../helpers/history';
 
+import { AccountCircle, Home, MenuIcon, Dashboard } from "material-ui-icons/";
+import IconButton from "material-ui/IconButton";
+import Menu, { MenuItem } from "material-ui/Menu";
+import Button from "material-ui/Button";
+
+
 export default class HeaderButtons extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       loading: null,
-      isAuthed: false,
       anchorEl: null
     };
   }
