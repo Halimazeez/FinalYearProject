@@ -31,6 +31,7 @@ class Profile extends React.Component {
           .get()
           .then(doc => {
             if (doc.exists) {
+              //set user data to states
               this.setState({
                 ohp: doc.data().ohp,
                 bench: doc.data().bench,

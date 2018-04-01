@@ -1,20 +1,24 @@
 import React from "react";
-import Grid from "material-ui/Grid";
 import PropTypes from "prop-types";
 
+import Grid from "material-ui/Grid";
 import { withStyles } from "material-ui/styles";
 import Paper from "material-ui/Paper";
 import Typography from "material-ui/Typography";
-import { FormLabel } from "material-ui/Form";
 import Divider from "material-ui/Divider";
 import TextField from "material-ui/TextField";
 
 import Progress from "./Progress";
+import SaveLift from "./SaveLift";
 
 class Lift extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      reps: "",
+      weight: "",
+      onerepmax: null
+    };
   }
 
   calculateMax = () => {
@@ -26,8 +30,6 @@ class Lift extends React.Component {
     }
   };
 
-  saveLift = () => {};
-
   onChange = e => {
     this.setState({
       [e.target.id]: e.target.value
@@ -35,7 +37,7 @@ class Lift extends React.Component {
   };
 
   render() {
-    const { classes, text, max } = this.props;
+    const { classes, text, max, lift } = this.props;
     const { onerepmax, weight, reps } = this.state;
 
     return (
@@ -67,7 +69,7 @@ class Lift extends React.Component {
               className={classes.inputs}
               onChange={this.onChange}
               value={weight}
-              //onBlur={this.calculateMax}
+              onBlur={this.calculateMax}
             />
           </Grid>
 
@@ -75,11 +77,13 @@ class Lift extends React.Component {
             <Typography variant="subheading">
               {text} One-Rep-Max: {onerepmax}
             </Typography>
-            <Progress
-              max={max}
-              value={onerepmax}
-              {...console.log("1r:" + onerepmax)}
-            />
+            <Progress max={max} value={onerepmax} />
+          </Grid>
+
+          <Grid container justify="center">
+            <Grid item>
+              <SaveLift onerepmax={onerepmax} lift={lift} />
+            </Grid>
           </Grid>
         </Grid>
       </Grid>

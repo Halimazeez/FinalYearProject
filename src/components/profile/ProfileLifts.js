@@ -15,32 +15,30 @@ class ProfileLifts extends React.Component {
   }
   render() {
     return (
-      <Grid container justify="center" style={styles.root}>
-        <Grid item xs={12} sm={8} md={5}>
-          <Paper style={styles.paper}>
-            <Grid item xs={12} style={styles.center}>
-              <AccountCircle style={styles.icon} />
-            </Grid>
-            {this.props.email}
+      <Grid container style={styles.root}>
+        <Paper style={styles.paper}>
+          <Grid item xs={12} style={styles.center}>
+            <AccountCircle style={styles.icon} />
+          </Grid>
+          {this.props.email}
 
-            <Divider />
+          <Divider />
 
-            <Grid container justify="center">
-              <Grid item xs={12}>
-                <p>Bench Press: {this.props.bench}</p>
-              </Grid>
-              <Grid item xs={12}>
-                <p>Squat:{this.props.squat}</p>
-              </Grid>
-              <Grid item xs={12}>
-                <p>Deadlift: {this.props.dead}</p>
-              </Grid>
-              <Grid item xs={12}>
-                <p>Overhead Press:{this.props.ohp}</p>
-              </Grid>
+          <Grid container justify="center">
+            <Grid item xs={12}>
+              <p>Bench Press: {this.props.bench}</p>
             </Grid>
-          </Paper>
-        </Grid>
+            <Grid item xs={12}>
+              <p>Squat:{this.props.squat}</p>
+            </Grid>
+            <Grid item xs={12}>
+              <p>Deadlift: {this.props.dead}</p>
+            </Grid>
+            <Grid item xs={12}>
+              <p>Overhead Press:{this.props.ohp}</p>
+            </Grid>
+          </Grid>
+        </Paper>
       </Grid>
     );
   }
@@ -48,7 +46,13 @@ class ProfileLifts extends React.Component {
 const styles = {
   root: {
     flexGrow: 1,
-    paddingTop: 10
+    paddingTop: 10,
+    maxWidth: 400,
+    position: "relative",
+    left: 0,
+    right: 0,
+    marginLeft: "auto",
+    marginRight: "auto"
   },
   paper: {
     width: "100%"
