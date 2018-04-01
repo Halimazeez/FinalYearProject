@@ -8,12 +8,6 @@ import Button from "material-ui/Button";
 import TextField from "material-ui/TextField";
 import Typography from "material-ui/Typography";
 
-function setErrorMsg(error) {
-  return {
-    registerError: error.message
-  };
-}
-
 //const isInvalid = passwordOne !== passwordTwo;
 
 export default class RegisterForm extends React.Component {
@@ -22,24 +16,29 @@ export default class RegisterForm extends React.Component {
     this.state = {
       email: "",
       password: "",
-
       registerError: null
     };
   }
 
+  //inline error message with event
+  setErrorMsg = error => {
+    this.setState({ registerError: error.message });
+  };
   //global onchange for state
-  onChange = e =>
+  onChange = e => {
     this.setState({
-      [e.target.id]: e.target.value,
-      //reset the error if exist
-      registerError: null
+      [e.target.id]: e.target.value
     });
-
+    //reset the error if exist
+    if (this.state.registerError != null) {
+      this.setState({ registerError: null });
+    }
+  };
   //submit new user information
   onSubmit = e => {
     e.preventDefault();
     createUser(this.state.email, this.state.password).catch(e =>
-      this.setState(setErrorMsg(e))
+      this.setErrorMsg(e)
     );
     //history.push("/dashboard");
   };
@@ -58,7 +57,7 @@ export default class RegisterForm extends React.Component {
             style={styles.textField}
             onChange={this.onChange}
             value={this.state.email}
-						type="email"
+            type="email"
           />
           <TextField
             id="password"
@@ -68,7 +67,6 @@ export default class RegisterForm extends React.Component {
             style={styles.textField}
             onChange={this.onChange}
             value={this.state.password}
-
           />
           {this.state.registerError && (
             <div>

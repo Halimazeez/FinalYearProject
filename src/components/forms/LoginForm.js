@@ -8,13 +8,6 @@ import Typography from "material-ui/Typography";
 import history from "../helpers/history";
 import { firebaseAuth } from "../helpers/dbCon";
 
-//Login error
-function setErrorMsg(error) {
-  return {
-    loginError: error.message
-  };
-}
-
 export default class LoginForm extends React.Component {
   constructor() {
     super();
@@ -25,18 +18,27 @@ export default class LoginForm extends React.Component {
     };
   }
 
+  //inline error message with event
+  setErrorMsg = error => {
+    this.setState({ loginError: error.message });
+  };
+
   //global onchange for state
-  onChange = e =>
+  onChange = e => {
     this.setState({
       [e.target.id]: e.target.value
     });
+    //reset the error if exist
+    if (this.state.loginError != null) {
+      this.setState({ loginError: null });
+    }
+  };
 
   // submit login form with username and password
   onSubmit = e => {
-    this.setState(setErrorMsg(""));
     e.preventDefault();
     login(this.state.email, this.state.password).catch(error => {
-      this.setState(setErrorMsg(error));
+      this.setErrorMsg(error);
     });
   };
 

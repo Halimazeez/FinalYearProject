@@ -9,16 +9,14 @@ import ProfileLifts from "../../components/profile/ProfileLifts";
 class Profile extends React.Component {
   constructor() {
     super();
-
     this.state = {
       ohp: "",
       bench: "",
-      squat: [],
+      squat: "",
       dead: "",
       email: "",
       loading: true
     };
-    //console.log(Object.keys(this.state.data[0]));
   }
 
   componentDidMount() {

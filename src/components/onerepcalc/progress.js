@@ -20,7 +20,7 @@ const Progress = ({ value, max }) => (
       value={value}
       min={0}
       max={max}
-      //  marks={marks}
+    //  marks={marks}
     />
   </div>
 );

@@ -14,14 +14,17 @@ import Progress from "./Progress";
 class Lift extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      onerepmax: null
+    };
+    console.log(this.state.onerepmax);
   }
 
-  calculateMax = () => {
-    if (this.state.weight != null && this.state.reps != null) {
+  calculateMax = (reps, weight) => {
+    if (weight != null && reps != null) {
       this.setState({
         // Use Math.round with one-rep-max formula to get int value
-        onerepmax: Math.round(this.state.weight * (1 + this.state.reps / 30))
+        onerepmax: Math.round(weight * (1 + reps / 30))
       });
     }
   };
@@ -32,6 +35,13 @@ class Lift extends React.Component {
     this.setState({
       [e.target.id]: e.target.value
     });
+    let reps, weight;
+    if (e.target.id === "reps") {
+      reps = e.target.value;
+    } else {
+      weight = e.target.value;
+    }
+    this.calculateMax(reps, weight);
   };
 
   render() {
@@ -67,7 +77,7 @@ class Lift extends React.Component {
               className={classes.inputs}
               onChange={this.onChange}
               value={weight}
-              //onBlur={this.calculateMax}
+              onBlur={this.calculateMax}
             />
           </Grid>
 
@@ -75,11 +85,7 @@ class Lift extends React.Component {
             <Typography variant="subheading">
               {text} One-Rep-Max: {onerepmax}
             </Typography>
-            <Progress
-              max={max}
-              value={onerepmax}
-              {...console.log("1r:" + onerepmax)}
-            />
+            <Progress max={max} value={onerepmax} {...console.log(onerepmax)} />
           </Grid>
         </Grid>
       </Grid>

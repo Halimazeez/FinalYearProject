@@ -4,18 +4,21 @@ import RegisterForm from "../components/forms/RegisterForm";
 import history from "../components/helpers/history";
 import { firebaseAuth } from "../components/helpers/dbCon";
 
-firebaseAuth().onAuthStateChanged(user => {
-  if (user) {
-    history.push("/dashboard");
-  } else {
-    //otherwise goto login page
+export default class RegisterPage extends React.Component {
+  componentDidMount() {
+    firebaseAuth().onAuthStateChanged(user => {
+      if (user) {
+        history.push("/dashboard");
+      } else {
+        //otherwise goto login page
+      }
+    });
   }
-});
-
-const RegisterPage = () => (
-  <div>
-    <RegisterForm />
-  </div>
-);
-
-export default RegisterPage;
+  render() {
+    return (
+      <div>
+        <RegisterForm />
+      </div>
+    );
+  }
+}

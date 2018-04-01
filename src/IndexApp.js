@@ -24,7 +24,7 @@ export default class IndexApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sideNavOpen: false,
+      sideNavOpen: true,
       isAuthed: null
     };
   }
