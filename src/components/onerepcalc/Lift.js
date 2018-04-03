@@ -56,10 +56,6 @@ class Lift extends React.Component {
             />
           </Grid>
 
-          <Grid item md={2} xs={8}>
-            <Typography className={classes.liftAt}>At:</Typography>
-          </Grid>
-
           <Grid item md={4} xs={8}>
             <TextField
               id="weight"
@@ -102,10 +98,6 @@ const styles = {
   root: {
     flexGrow: 1,
     padding: 10
-  },
-  liftAt: {
-    paddingTop: 25,
-    textAlign: "center"
   },
   inputs: {
     width: "100%"

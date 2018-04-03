@@ -18,26 +18,26 @@ class OneRepCalc extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <Grid container style={styles.root} justify="center">
-        <Grid item md={5} sm={10} xs={12}>
+      <Grid container ClassName={classes.root} justify="center" spacing={200}>
+        <Grid item md={5} sm={10} xs={12} className={classes.grid}>
           <Panels Icon={Home} title="Bench Press">
             <Lift text="Bench Press" max={140} lift="bench" />
           </Panels>
         </Grid>
 
-        <Grid item md={5} sm={10} xs={12}>
+        <Grid item md={5} sm={10} xs={12} className={classes.grid}>
           <Panels Icon={Home} title="Deadlift">
             <Lift text="Deadlift" max={200} lift="dead" />
           </Panels>
         </Grid>
 
-        <Grid item md={5} sm={10} xs={12}>
+        <Grid item md={5} sm={10} xs={12} className={classes.grid}>
           <Panels Icon={Home} title="Squat">
             <Lift text="Squat" max={180} lift="squat" />
           </Panels>
         </Grid>
 
-        <Grid item md={5} sm={10} xs={12}>
+        <Grid item md={5} sm={10} xs={12} className={classes.grid}>
           <Panels Icon={Home} title="Overhead Press">
             <Lift text="Overhead Press" max={100} lift="ohp" />
           </Panels>
@@ -51,10 +51,14 @@ OneRepCalc.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-const styles = {
+const styles = theme => ({
   root: {
     flexGrow: 1
+  },
+  grid: {
+    padding: theme.spacing.unit * 2,
+
   }
-};
+});
 
 export default withStyles(styles)(OneRepCalc);

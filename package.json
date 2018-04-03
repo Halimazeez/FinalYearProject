@@ -6,7 +6,7 @@
   "dependencies": {
     "firebase": "^4.11.0",
     "gh-pages": "^1.1.0",
-    "material-ui": "^1.0.0-beta.35",
+    "material-ui": "^1.0.0-beta.40",
     "material-ui-icons": "^1.0.0-beta.35",
     "materialize-css": "^0.100.2",
     "moment": "^2.20.1",
