@@ -82,7 +82,7 @@ export default class HeaderButtons extends React.Component {
             <Home />
           </IconButton>
         </Link>
-        <Link to="/home/login" style={styles.link}>
+        <Link to="/login" style={styles.link}>
           <Button color="inherit">Login</Button>
         </Link>
       </div>

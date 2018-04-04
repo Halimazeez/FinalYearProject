@@ -81,7 +81,7 @@ export default class LoginForm extends React.Component {
               Login
             </Button>
 
-            <Link to="/home/register">
+            <Link to="/register">
               <Button style={styles.button} variant="raised" color="secondary">
                 Register
               </Button>

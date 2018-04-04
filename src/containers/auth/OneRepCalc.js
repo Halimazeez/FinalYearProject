@@ -18,7 +18,7 @@ class OneRepCalc extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <Grid container ClassName={classes.root} justify="center" spacing={200}>
+      <Grid container ClassName={classes.root} justify="center">
         <Grid item md={5} sm={10} xs={12} className={classes.grid}>
           <Panels Icon={Home} title="Bench Press">
             <Lift text="Bench Press" max={140} lift="bench" />
@@ -57,7 +57,6 @@ const styles = theme => ({
   },
   grid: {
     padding: theme.spacing.unit * 2,
-
   }
 });
 

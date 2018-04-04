@@ -17,6 +17,7 @@ class ControlPanel extends React.Component {
     super(props);
     this.state = {
       lifts: [
+        //pushing lift props into a array state to use as map for functionality
         { name: "Bench Press", lift: this.props.bench },
         { name: "Overhead Press", lift: this.props.ohp },
         { name: "Deadlift", lift: this.props.dead },
@@ -24,21 +25,28 @@ class ControlPanel extends React.Component {
       ]
     };
   }
-  componentDidMount() {}
   render() {
     const { classes } = this.props;
     console.log(this.state.lifts);
     return (
-      <Grid container className={classes.root}>
+      <Grid container className={classes.root} align="center">
         <Grid item xs={12}>
           <Typography className={classes.header}>{this.props.title}</Typography>
         </Grid>
+
         <Grid item xs={12}>
-          <Typography variant="subheading">Current One-Rep-Maxs:</Typography>
-          <Grid container className={classes.lifts} align="center">
+          <Typography variant="subheading" className={classes.subheader}>
+            Your One-Rep-Maxs:
+          </Typography>
+        </Grid>
+
+        <Grid item xs={12} >
+          <Grid container className={classes.lifts}>
             {this.state.lifts.map((lift, index) => (
               <Grid xs={3} key={index}>
-                <Typography>{lift.name}</Typography>
+                <Typography className={classes.liftHeader}>
+                  {lift.name}
+                </Typography>
                 <Input
                   disabled
                   disableUnderline
@@ -59,17 +67,14 @@ ControlPanel.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-const styles = {
+const styles = theme => ({
   root: {
     flexGrow: 1,
     padding: 10
   },
   header: {
     fontSize: 50,
-    textAlign: "center"
-  },
-  paper: {
-    //display: "flex"
+    fontWeight: 250
   },
   lifts: {
     paddingLeft: 25
@@ -77,7 +82,12 @@ const styles = {
   inputs: {
     paddingLeft: 20,
     width: 50
+  },
+  subheader: {
+    //float: "left",
+    //paddingLeft: 20,
+    fontWeight: "bold"
   }
-};
+});
 
 export default withStyles(styles)(ControlPanel);

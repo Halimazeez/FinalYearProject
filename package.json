@@ -1,7 +1,7 @@
 {
   "name": "FitMe",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.6.0",
+  "private": false,
   "homepage": "https://react-5c622.firebaseapp.com",
   "dependencies": {
     "firebase": "^4.11.0",

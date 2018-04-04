@@ -30,14 +30,14 @@ class sideNav extends React.Component {
         >
           <List>
             <Link to="/dashboard/onerepcalc" style={styles.loginLink}>
-              <ListItem button divider>
+              <ListItem button divider disableGutters style={styles.gutter}>
                 <InboxIcon />
                 {/* }<ListItemText primary="One-Rep-Max" /> */}
               </ListItem>
             </Link>
 
             <Link to="/dashboard/workoutcalc" style={styles.loginLink}>
-              <ListItem button divider>
+              <ListItem button divider disableGutters style={styles.gutter}>
                 <InboxIcon />
                 {/* <ListItemText primary="Workout Calculator" />  */}
               </ListItem>
@@ -45,14 +45,14 @@ class sideNav extends React.Component {
           </List>
 
           <List>
-            <ListItem button disabled>
+            <ListItem button disabled disableGutters style={styles.gutter}>
               <ListItemIcon>
                 <InboxIcon />
               </ListItemIcon>
               {/*<ListItemText primary="About Us" /> */}
             </ListItem>
 
-            <ListItem button disabled>
+            <ListItem button disabled disableGutters style={styles.gutter}>
               <ListItemIcon>
                 <DraftsIcon />
               </ListItemIcon>
@@ -73,11 +73,14 @@ const styles = {
   paper: {
     top: 64,
     width: 60,
-    backgroundColor: "#666"
+    backgroundColor: "#666",
   },
   loginLink: {
     color: "#fff",
     textDecoration: "none"
+  },
+  gutter: {
+    paddingLeft: 18
   }
 };
 

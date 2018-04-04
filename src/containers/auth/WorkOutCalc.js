@@ -10,6 +10,7 @@ import { Home } from "material-ui-icons/";
 import { firebaseAuth, db } from "../../components/helpers/dbCon";
 import Loading from "../../components/helpers/loading";
 import ControlPanel from "../../components/workoutcalc/ControlPanel";
+import WeeklyForm from "../../components/workoutcalc/WeeklyForm";
 
 class OneRepCalc extends React.Component {
   constructor() {
@@ -20,7 +21,8 @@ class OneRepCalc extends React.Component {
       squat: "",
       dead: "",
       email: "",
-      loading: true
+      loading: true,
+      week: [1, 2, 3, 4]
     };
   }
 
@@ -65,10 +67,11 @@ class OneRepCalc extends React.Component {
     if (this.state.loading) {
       return <Loading />;
     }
+
     const { classes } = this.props;
     return (
       <Grid container justify="center" className={classes.root}>
-        <Grid item xs={12} sm={10}>
+        <Grid item xs={12} sm={9} md={6} lg={5} xl={4}>
           <Paper>
             <ControlPanel
               bench={this.state.bench}
@@ -78,6 +81,19 @@ class OneRepCalc extends React.Component {
               title="Workout Calculator"
             />
           </Paper>
+        </Grid>
+        <Grid container className={classes.lifts} justify="center">
+          {this.state.week.map(i => (
+            <Grid item xs={12} sm={11} md={10}>
+              <WeeklyForm
+                week={i}
+                bench={this.state.bench}
+                ohp={this.state.ohp}
+                squat={this.state.squat}
+                dead={this.state.dead}
+              />
+            </Grid>
+          ))}
         </Grid>
       </Grid>
     );

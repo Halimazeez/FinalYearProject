@@ -22,7 +22,7 @@ class SaveLift extends React.Component {
     let userid = firebaseAuth().currentUser.uid;
     let docRef = db.collection("users").doc(userid);
 
-    //update lift data
+    //update lift prop as data pointer for db
     docRef
       .update({ [lift]: this.props.onerepmax })
       .then(lift => {

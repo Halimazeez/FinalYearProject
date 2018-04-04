@@ -41,45 +41,43 @@ class Lift extends React.Component {
     const { onerepmax, weight, reps } = this.state;
 
     return (
-      <Grid container className={classes.root}>
-        <Grid container justify="center" className={classes.liftContainer}>
-          <Grid item md={4} xs={8}>
-            <TextField
-              id="reps"
-              label="Reps"
-              placeholder="Enter Reps"
-              type="number"
-              className={classes.inputs}
-              onChange={this.onChange}
-              value={reps}
-              onBlur={this.calculateMax}
-            />
-          </Grid>
+      <Grid container justify="center" align="center" className={classes.root}>
+        <Grid item md={4} xs={8}>
+          <TextField
+            id="reps"
+            label="Reps"
+            placeholder="Enter Reps"
+            type="number"
+            className={classes.inputs}
+            onChange={this.onChange}
+            value={reps}
+            onBlur={this.calculateMax}
+          />
+        </Grid>
+        <Grid item xs={0} md={1} />
+        <Grid item md={4} xs={8}>
+          <TextField
+            id="weight"
+            label="Weight"
+            placeholder="Enter Weight"
+            type="number"
+            className={classes.inputs}
+            onChange={this.onChange}
+            value={weight}
+            onBlur={this.calculateMax}
+          />
+        </Grid>
 
-          <Grid item md={4} xs={8}>
-            <TextField
-              id="weight"
-              label="Weight"
-              placeholder="Enter Weight"
-              type="number"
-              className={classes.inputs}
-              onChange={this.onChange}
-              value={weight}
-              onBlur={this.calculateMax}
-            />
-          </Grid>
+        <Grid item xs={11} className={classes.progress}>
+          <Typography variant="subheading">
+            {text} One-Rep-Max: {onerepmax}
+          </Typography>
+          <Progress max={max} value={onerepmax} />
+        </Grid>
 
-          <Grid item xs={11} className={classes.progress}>
-            <Typography variant="subheading">
-              {text} One-Rep-Max: {onerepmax}
-            </Typography>
-            <Progress max={max} value={onerepmax} />
-          </Grid>
-
-          <Grid container justify="center">
-            <Grid item>
-              <SaveLift onerepmax={onerepmax} lift={lift} />
-            </Grid>
+        <Grid container>
+          <Grid item xs>
+            <SaveLift onerepmax={onerepmax} lift={lift} />
           </Grid>
         </Grid>
       </Grid>
@@ -96,14 +94,14 @@ Lift.propTypes = {
 
 const styles = {
   root: {
-    flexGrow: 1,
+    flexGrow: 0,
     padding: 10
+  },
+  progress: {
+    marginTop: 50
   },
   inputs: {
     width: "100%"
-  },
-  progress: {
-    marginTop: 20
   },
   liftContainer: {
     paddingBottom: 50

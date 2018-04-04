@@ -67,8 +67,8 @@ export default class IndexApp extends React.Component {
               render={() => <App sideNavOpen={this.state.sideNavOpen} />}
             />
 
-            <Route path="/home/login" component={LoginPage} />
-            <Route path="/home/register" component={RegisterPage} />
+            <Route path="/login" component={LoginPage} />
+            <Route path="/register" component={RegisterPage} />
             <Route path="/dashboard/profile" component={Profile} />
             <Route path="/dashboard/onerepcalc" component={OneRepCalc} />
             <Route path="/dashboard/workoutcalc" component={WorkOutCalc} />
