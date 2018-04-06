@@ -75,7 +75,7 @@ class WeeklyForm extends React.Component {
       Ohp.push(dataOhp);
     }
     this.setState({
-      values: [...this.state.values, [Bench], [Dead], [Squat], [Ohp]],
+      values: [...this.state.values, Bench, Dead, Squat, Ohp],
       loading: false
     });
   }
@@ -136,13 +136,14 @@ class WeeklyForm extends React.Component {
                   {this.state.lifts.map((lift, liftIndex) => (
                     <TableRow key={liftIndex}>
                       <TableCell>{lift.name}</TableCell>
-                      {this.state.values.map((valueData, valueIndex) => (
+                      {this.state.values[liftIndex].map((valueData, valueIndex) => (
                         <TableCell key={valueIndex}>
-                          {valueData[liftIndex]}
+                          {valueData}
                         </TableCell>
                       ))}
                     </TableRow>
                   ))}
+                  {console.log(JSON.stringify(this.state, null, 4))}
                 </TableBody>
               </Table>
             </Grid>
