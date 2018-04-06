@@ -83,8 +83,8 @@ class OneRepCalc extends React.Component {
           </Paper>
         </Grid>
         <Grid container className={classes.lifts} justify="center">
-          {this.state.week.map(i => (
-            <Grid item xs={12} sm={11} md={10}>
+          {this.state.week.map((i, index) => (
+            <Grid item xs={12} sm={11} md={10} key={index}>
               <WeeklyForm
                 week={i}
                 bench={this.state.bench}

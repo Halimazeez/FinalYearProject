@@ -19,9 +19,9 @@ class ControlPanel extends React.Component {
       lifts: [
         //pushing lift props into a array state to use as map for functionality
         { name: "Bench Press", lift: this.props.bench },
-        { name: "Overhead Press", lift: this.props.ohp },
         { name: "Deadlift", lift: this.props.dead },
-        { name: "Squat", lift: this.props.squat }
+        { name: "Squat", lift: this.props.squat },
+        { name: "Overhead Press", lift: this.props.ohp }
       ]
     };
   }
@@ -35,12 +35,12 @@ class ControlPanel extends React.Component {
         </Grid>
 
         <Grid item xs={12}>
-          <Typography variant="subheading" className={classes.subheader}>
+          <Typography variant="subheading" className={classes.subHeader}>
             Your One-Rep-Maxs:
           </Typography>
         </Grid>
 
-        <Grid item xs={12} >
+        <Grid item xs={12}>
           <Grid container className={classes.lifts}>
             {this.state.lifts.map((lift, index) => (
               <Grid xs={3} key={index}>
@@ -81,11 +81,12 @@ const styles = theme => ({
   },
   inputs: {
     paddingLeft: 20,
-    width: 50
+    width: 50,
+    color: "inherit"
   },
-  subheader: {
+  subHeader: {
     //float: "left",
-    //paddingLeft: 20,
+    paddingBottom: theme.spacing.unit,
     fontWeight: "bold"
   }
 });
