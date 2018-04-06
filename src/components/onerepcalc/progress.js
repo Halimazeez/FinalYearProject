@@ -7,20 +7,14 @@ import "rc-slider/assets/index.css";
 import { withStyles } from "material-ui/styles";
 import Data from "./Data";
 
-const marks = {
-  0: "Untrained",
-  75: "Intermediate",
-  150: "Olympic"
-};
-
-const Progress = ({ value, max }) => (
+const Progress = ({ value, max, marks }) => (
   <div style={styles.root}>
     <Slider
       defaultValue={0}
       value={value}
       min={0}
       max={max}
-      //  marks={marks}
+      marks={marks}
     />
   </div>
 );

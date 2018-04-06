@@ -8,32 +8,41 @@ import Typography from "material-ui/Typography";
 import Divider from "material-ui/Divider";
 import TextField from "material-ui/TextField";
 
-import Progress from "./Progress";
-import SaveLift from "./SaveLift";
-
 class Lift extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       reps: "",
       weight: "",
-      onerepmax: null
+      onerepmax: this.props.onerepmax
     };
   }
 
+  //calculate the one-rep-max as prop then pass with index
   calculateMax = () => {
-    if (this.state.weight != null && this.state.reps != null) {
-      this.setState({
-        // Use Math.round with one-rep-max formula to get int value
-        onerepmax: Math.round(this.state.weight * (1 + this.state.reps / 30))
-      });
+    if (this.state.weight != "" && this.state.reps != "") {
+      let max = Math.round(this.state.weight * (1 + this.state.reps / 30));
+      this.setState(
+        {
+          // Use Math.round with one-rep-max formula to get int value
+          onerepmax: max
+        },
+        () => {
+          this.props.sendonerepmax(max, this.props.num);
+        }
+      );
     }
   };
 
   onChange = e => {
-    this.setState({
-      [e.target.id]: e.target.value
-    });
+    this.setState(
+      {
+        [e.target.id]: e.target.value
+      },
+      () => {
+        this.calculateMax();
+      }
+    );
   };
 
   render() {
@@ -51,7 +60,6 @@ class Lift extends React.Component {
             className={classes.inputs}
             onChange={this.onChange}
             value={reps}
-            onBlur={this.calculateMax}
           />
         </Grid>
         <Grid item xs={0} md={1} />
@@ -64,7 +72,6 @@ class Lift extends React.Component {
             className={classes.inputs}
             onChange={this.onChange}
             value={weight}
-            onBlur={this.calculateMax}
           />
         </Grid>
 
@@ -72,13 +79,6 @@ class Lift extends React.Component {
           <Typography variant="subheading">
             {text} One-Rep-Max: {onerepmax}
           </Typography>
-          <Progress max={max} value={onerepmax} />
-        </Grid>
-
-        <Grid container>
-          <Grid item xs>
-            <SaveLift onerepmax={onerepmax} lift={lift} />
-          </Grid>
         </Grid>
       </Grid>
     );

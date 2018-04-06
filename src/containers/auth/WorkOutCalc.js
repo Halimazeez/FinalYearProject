@@ -22,7 +22,7 @@ class OneRepCalc extends React.Component {
       dead: "",
       email: "",
       loading: true,
-      week: [1, 2, 3, 4]
+      week: [1,2,3,4]
     };
   }
 
@@ -79,14 +79,16 @@ class OneRepCalc extends React.Component {
               squat={this.state.squat}
               dead={this.state.dead}
               title="Workout Calculator"
+              main="5/3/1"
             />
           </Paper>
         </Grid>
         <Grid container className={classes.lifts} justify="center">
-          {this.state.week.map((i, index) => (
+          {this.state.week.map((value, index) => (
             <Grid item xs={12} sm={11} md={10} key={index}>
               <WeeklyForm
-                week={i}
+                {...console.log(JSON.stringify(this.state.week, null, 4))}
+                week={value}
                 bench={this.state.bench}
                 ohp={this.state.ohp}
                 squat={this.state.squat}

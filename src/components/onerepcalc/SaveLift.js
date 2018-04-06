@@ -50,7 +50,7 @@ class SaveLift extends React.Component {
 const styles = {
   root: {
     flexGrow: 1,
-    marginTop: 10
+    marginTop: 20
   },
   icon: {
     "&:hover": {

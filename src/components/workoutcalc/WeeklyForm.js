@@ -16,6 +16,7 @@ import Table, {
   TableHead,
   TableRow
 } from "material-ui/Table";
+import Tooltip from "material-ui/Tooltip";
 
 import Loading from "../../components/helpers/loading";
 
@@ -61,14 +62,15 @@ class WeeklyForm extends React.Component {
     let curPer = this.getPer(this.props.week);
 
     for (let i = 0; i < 3; i++) {
-      let calcBench = Math.round(this.state.maxes[0].value * curPer[i]);
-      let calcDead = Math.round(this.state.maxes[1].value * curPer[i]);
-      let calcSquat = Math.round(this.state.maxes[2].value * curPer[i]);
-      let calcOhp = Math.round(this.state.maxes[3].value * curPer[i]);
-      let dataBench = calcBench + "x" + curSet[i];
-      let dataDead = calcDead + "x" + curSet[i];
-      let dataSquat = calcSquat + "x" + curSet[i];
-      let dataOhp = calcOhp + "x" + curSet[i];
+      const { maxes } = this.state;
+      let calcDead = Math.round(maxes[1].value * curPer[i]);
+      let calcSquat = Math.round(maxes[2].value * curPer[i]);
+      let calcBench = Math.round(maxes[0].value * curPer[i]);
+      let calcOhp = Math.round(maxes[3].value * curPer[i]);
+      let dataBench = calcBench + " x " + curSet[i];
+      let dataDead = calcDead + " x " + curSet[i];
+      let dataSquat = calcSquat + " x " + curSet[i];
+      let dataOhp = calcOhp + " x " + curSet[i];
       Bench.push(dataBench);
       Dead.push(dataDead);
       Squat.push(dataSquat);
@@ -113,40 +115,35 @@ class WeeklyForm extends React.Component {
     }
     return (
       <Grid container className={classes.root}>
-        {console.log("values:" + this.state.values)}
         <Grid item xs={12}>
           <Typography variant="headline" className={classes.header}>
             Week: {this.props.week}
           </Typography>
         </Grid>
         <Grid item xs={12}>
-          <Paper className={classes.paper}>
-            <Grid container className={classes.lifts}>
-              <Table className={classes.table}>
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Compound</TableCell>
-                    <TableCell>Set 1</TableCell>
-                    <TableCell>Set 2</TableCell>
-                    <TableCell>Set 3</TableCell>
+          <Paper className={classes.paper} align="center">
+            <Table className={classes.table} align="center">
+              <TableHead>
+                <TableRow>
+                  <TableCell>Compound</TableCell>
+                  <TableCell>Set 1</TableCell>
+                  <TableCell>Set 2</TableCell>
+                  <TableCell>Set 3</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {this.state.lifts.map((lift, liftIndex) => (
+                  <TableRow key={liftIndex}>
+                    <TableCell>{lift.name}</TableCell>
+                    {this.state.values[liftIndex].map(
+                      (valueData, valueIndex) => (
+                        <TableCell key={valueIndex}>{valueData}</TableCell>
+                      )
+                    )}
                   </TableRow>
-                </TableHead>
-
-                <TableBody>
-                  {this.state.lifts.map((lift, liftIndex) => (
-                    <TableRow key={liftIndex}>
-                      <TableCell>{lift.name}</TableCell>
-                      {this.state.values[liftIndex].map((valueData, valueIndex) => (
-                        <TableCell key={valueIndex}>
-                          {valueData}
-                        </TableCell>
-                      ))}
-                    </TableRow>
-                  ))}
-                  {console.log(JSON.stringify(this.state, null, 4))}
-                </TableBody>
-              </Table>
-            </Grid>
+                ))}
+              </TableBody>
+            </Table>
           </Paper>
         </Grid>
       </Grid>
@@ -162,13 +159,16 @@ const styles = theme => ({
     marginTop: 50
   },
   header: {
-    fontWeight: "250"
+    fontWeight: "bold"
   },
   Table: {
     minWidth: 800
   },
   typo: {
     display: "inline"
+  },
+  center: {
+    textAlign: "center"
   }
 });
 

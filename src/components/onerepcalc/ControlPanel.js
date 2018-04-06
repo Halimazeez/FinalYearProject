@@ -15,19 +15,11 @@ import Input, { InputLabel } from "material-ui/Input";
 class ControlPanel extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      lifts: [
-        //pushing lift props into a array state to use as map for functionality
-        { name: "Bench Press", lift: this.props.bench },
-        { name: "Deadlift", lift: this.props.dead },
-        { name: "Squat", lift: this.props.squat },
-        { name: "Overhead Press", lift: this.props.ohp }
-      ]
-    };
+    this.state = {};
   }
   render() {
     const { classes } = this.props;
-    console.log(this.state.lifts);
+
     return (
       <Grid container className={classes.root} align="center">
         <Grid item xs={12}>
@@ -46,15 +38,9 @@ class ControlPanel extends React.Component {
             {this.state.lifts.map((lift, index) => (
               <Grid xs={3} key={index}>
                 <Typography className={classes.liftHeader}>
-                  {lift.name}
+                  Your weight: 
                 </Typography>
-                <Input
-                  disabled
-                  disableUnderline
-                  value={lift.lift}
-                  type="number"
-                  className={classes.inputs}
-                />
+
               </Grid>
             ))}
           </Grid>
