@@ -13,7 +13,6 @@ const Progress = ({ value, max, marks }) => (
       defaultValue={0}
       value={value}
       min={0}
-      max={max}
       marks={marks}
     />
   </div>

@@ -10,40 +10,40 @@ import Button from "material-ui/Button";
 import TextField from "material-ui/TextField";
 import Typography from "material-ui/Typography";
 import Divider from "material-ui/Divider";
-import Input, { InputLabel } from "material-ui/Input";
+import Input, { InputLabel, InputAdornment } from "material-ui/Input";
 
 class ControlPanel extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+    };
   }
+
   render() {
     const { classes } = this.props;
+    const { userWeight } = this.props;
 
     return (
-      <Grid container className={classes.root} align="center">
-        <Grid item xs={12}>
-          <Typography className={classes.header}>{this.props.main}</Typography>
-          <Typography className={classes.header}>{this.props.title}</Typography>
-        </Grid>
-
-        <Grid item xs={12}>
-          <Typography variant="subheading" className={classes.subHeader}>
-            <strong>Your One-Rep-Maxs:</strong> (kg)
-          </Typography>
-        </Grid>
-
-        <Grid item xs={12}>
-          <Grid container className={classes.lifts}>
-            {this.state.lifts.map((lift, index) => (
-              <Grid xs={3} key={index}>
-                <Typography className={classes.liftHeader}>
-                  Your weight: 
-                </Typography>
-
-              </Grid>
-            ))}
-          </Grid>
+      <Grid container className={classes.root} justify="center">
+        <Grid item xs align="center">
+          <Paper className={classes.paper}>
+            <Typography variant="subheading" className={classes.subHeader}>
+              <strong>Your Weight:</strong>
+            </Typography>
+            <Input
+              id="userWeight"
+              type="number"
+              className={classes.inputs}
+              onChange={this.props.onChange}
+              value={userWeight}
+              disableUnderline
+              placeholder="0"
+              startAdornment={
+                <InputAdornment position="start">Kg</InputAdornment>
+              }
+              maxLength={2}
+            />
+          </Paper>
         </Grid>
       </Grid>
     );
@@ -56,8 +56,7 @@ ControlPanel.propTypes = {
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
-    padding: 10
+    flexGrow: 1
   },
   header: {
     fontSize: 50,
@@ -68,11 +67,13 @@ const styles = theme => ({
   },
   inputs: {
     paddingLeft: 20,
-    width: 50,
+    width: 70,
     color: "inherit"
   },
-  subHeader: {
-    paddingBottom: theme.spacing.unit
+  subHeader: {},
+  paper: {
+    maxWidth: 200,
+    padding: 10
   }
 });
 

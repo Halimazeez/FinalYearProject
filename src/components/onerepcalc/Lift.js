@@ -51,7 +51,7 @@ class Lift extends React.Component {
 
     return (
       <Grid container justify="center" align="center" className={classes.root}>
-        <Grid item md={4} xs={8}>
+        <Grid item xs={8}>
           <TextField
             id="reps"
             label="Reps"
@@ -62,8 +62,8 @@ class Lift extends React.Component {
             value={reps}
           />
         </Grid>
-        <Grid item xs={0} md={1} />
-        <Grid item md={4} xs={8}>
+
+        <Grid item xs={8}>
           <TextField
             id="weight"
             label="Weight"

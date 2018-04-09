@@ -17,12 +17,23 @@ import Divider from "material-ui/Divider";
 class Panels extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      open: true
+    };
   }
+  togglePanels = () => {
+    this.setState({
+      open: !this.state.open
+    });
+  };
   render() {
     const { title, Icon, classes } = this.props;
     return (
-      <ExpansionPanel>
-        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+      <ExpansionPanel expanded={this.state.open}>
+        <ExpansionPanelSummary
+          expandIcon={<ExpandMoreIcon />}
+          onClick={this.togglePanels}
+        >
           <Icon className={classes.icon}>{Icon}</Icon>
 
           <Typography className={classes.header}>{title}</Typography>
