@@ -9,12 +9,7 @@ import Data from "./Data";
 
 const Progress = ({ value, max, marks }) => (
   <div style={styles.root}>
-    <Slider
-      defaultValue={0}
-      value={value}
-      min={0}
-      marks={marks}
-    />
+    <Slider defaultValue={0} value={value} min={0} marks={marks} max={max} />
   </div>
 );
 

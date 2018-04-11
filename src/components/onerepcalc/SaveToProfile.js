@@ -26,7 +26,7 @@ class SaveToProfile extends React.Component {
     //update lift prop as data pointer for db
     docRef.collection("")
       .set({
-        [lifts[]]: this.props.onerepmax,
+        //[lifts[]]: this.props.onerepmax,
 
       })
       .then(lift => {

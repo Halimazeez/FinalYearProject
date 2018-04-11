@@ -32,14 +32,27 @@ class OneRepCalc extends React.Component {
       marks: []
     };
   }
+
+  //get closest to 5kg for weight index of 5 increments
   ticks = () => {
     const { userWeight } = this.state;
-    //get closest to 5kg for weight index of 5 increments
     let x = 0;
     if (userWeight > 60) {
       x = Math.round((userWeight - 60) / 5);
     }
     return x;
+  };
+
+
+  //last index of current data object for max bound
+  getMax = lift => {
+    let x = data[lift][this.ticks()];
+
+    let y = [Object.keys(x)[Object.keys(x).length - 1]];
+
+    let p = parseInt(y, 0);
+    //console.log(p);
+    return p;
   };
 
   weightChange = e => {
@@ -65,14 +78,15 @@ class OneRepCalc extends React.Component {
     }
   };
 
+  //set the onerepmax in lifts using num as index
   sendonerepmax = (onerepmax, num) => {
     const { lifts } = this.state;
-    //set the onerepmax in lifts using num as index
     lifts[num].onerepmax = onerepmax;
     this.setState({
       lifts
     });
   };
+
   render() {
     const { classes } = this.props;
     return (
@@ -105,6 +119,7 @@ class OneRepCalc extends React.Component {
                     <Progress
                       value={lift.onerepmax}
                       marks={data[lift.db][this.ticks()]}
+                      max={this.getMax(lift.db)}
                     />
                     <SaveLift
                       className={classes.save}
@@ -122,7 +137,7 @@ class OneRepCalc extends React.Component {
             <Button>Goto Workout</Button>
           </Grid>
           <Grid item>
-            <SaveToProfile lifts={this.state.lifts}/>
+            <SaveToProfile lifts={this.state.lifts} />
           </Grid>
         </Grid>
       </Grid>
