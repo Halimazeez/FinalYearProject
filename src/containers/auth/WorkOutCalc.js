@@ -20,7 +20,6 @@ class OneRepCalc extends React.Component {
       bench: "",
       squat: "",
       dead: "",
-      email: "",
       loading: true,
       week: [1,2,3,4]
     };
@@ -44,7 +43,6 @@ class OneRepCalc extends React.Component {
                 bench: doc.data().bench,
                 dead: doc.data().dead,
                 squat: doc.data().squat,
-                email: doc.data().email,
                 loading: false
               });
             } else {
@@ -64,6 +62,7 @@ class OneRepCalc extends React.Component {
   }
 
   render() {
+    
     if (this.state.loading) {
       return <Loading />;
     }
@@ -87,7 +86,6 @@ class OneRepCalc extends React.Component {
           {this.state.week.map((value, index) => (
             <Grid item xs={12} sm={11} md={10} key={index}>
               <WeeklyForm
-                {...console.log(JSON.stringify(this.state.week, null, 4))}
                 week={value}
                 bench={this.state.bench}
                 ohp={this.state.ohp}

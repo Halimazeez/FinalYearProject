@@ -14,6 +14,7 @@ class ProfileLifts extends React.Component {
     super();
   }
   render() {
+    
     return (
       <Grid container style={styles.root}>
         <Paper style={styles.paper}>

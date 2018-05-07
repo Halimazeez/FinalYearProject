@@ -21,38 +21,61 @@ class OneRepCalc extends React.Component {
   constructor() {
     super();
     this.state = {
-      userWeight: 0,
       lifts: [
         { name: "Bench Press", onerepmax: 0, db: "bench" },
         { name: "Deadlift", onerepmax: 0, db: "dead" },
         { name: "Squat", onerepmax: 0, db: "squat" },
         { name: "Overhead Press", onerepmax: 0, db: "ohp" }
       ],
-      levels: ["Beginner", "Intermediate", "Advanced", "Elite"],
-      marks: []
+      userWeight: 0
     };
   }
+
+  //four lift validation
+  validation = () => {
+    const { lifts } = this.state;
+
+    if (
+      lifts[0].onerepmax === 0 ||
+      lifts[1].onerepmax === 0 ||
+      lifts[2].onerepmax === 0 ||
+      lifts[3].onerepmax === 0
+    ) {
+      return true; //disable button if empty
+    } else {
+      return false; //true if all 4 are > 0
+    }
+  };
 
   //get closest to 5kg for weight index of 5 increments
   ticks = () => {
     const { userWeight } = this.state;
-    let x = 0;
+    let index = 0;
     if (userWeight > 60) {
-      x = Math.round((userWeight - 60) / 5);
+      index = Math.round((userWeight - 60) / 5);
     }
-    return x;
+    return index;
   };
-
 
   //last index of current data object for max bound
   getMax = lift => {
-    let x = data[lift][this.ticks()];
+    let index = data[lift][this.ticks()];
 
-    let y = [Object.keys(x)[Object.keys(x).length - 1]];
+    let objectNums = [Object.keys(index)[Object.keys(index).length - 1]];
 
-    let p = parseInt(y, 0);
+    let lastElement = parseInt(objectNums, 0);
     //console.log(p);
-    return p;
+    return lastElement;
+  };
+
+  getMin = lift => {
+    let index = data[lift][this.ticks()];
+
+    let objectNums = [Object.keys(index)[Object.keys(index).length - 5]];
+
+    let lastElement = parseInt(objectNums, 0);
+    //console.log(p);
+    return lastElement;
   };
 
   weightChange = e => {
@@ -88,7 +111,9 @@ class OneRepCalc extends React.Component {
   };
 
   render() {
+    //console.log(JSON.stringify(this.state));
     const { classes } = this.props;
+    const isEnabled = this.validation();
     return (
       <Grid container className={classes.root} justify="center">
         <Grid item xs={12} className={classes.control}>
@@ -120,11 +145,13 @@ class OneRepCalc extends React.Component {
                       value={lift.onerepmax}
                       marks={data[lift.db][this.ticks()]}
                       max={this.getMax(lift.db)}
+                      min={this.getMin(lift.db)}
                     />
                     <SaveLift
                       className={classes.save}
                       onerepmax={lift.onerepmax}
                       lift={lift.db}
+                      disabled={lift.onerepmax === 0}
                     />
                   </Grid>
                 </Grid>
@@ -134,10 +161,10 @@ class OneRepCalc extends React.Component {
         </Grid>
         <Grid container className={classes.control} justify="center">
           <Grid item>
-            <Button>Goto Workout</Button>
+            <Button disabled={isEnabled}>Goto Workout</Button>
           </Grid>
           <Grid item>
-            <SaveToProfile lifts={this.state.lifts} />
+            <SaveToProfile lifts={this.state.lifts} disabled={isEnabled} />
           </Grid>
         </Grid>
       </Grid>
@@ -154,7 +181,8 @@ const styles = theme => ({
     flexGrow: 1
   },
   grid: {
-    paddingTop: theme.spacing.unit * 2
+    paddingTop: theme.spacing.unit * 2,
+    margin: 0
   },
   control: {
     paddingTop: theme.spacing.unit * 2

@@ -27,7 +27,7 @@ export default class Header extends React.Component {
     ) : null;
 
     return (
-      <AppBar>
+      <AppBar elevation={0}>
         <Toolbar>
           {authedNavToggle}
           <Typography variant="title" color="inherit" style={styles.flex}>

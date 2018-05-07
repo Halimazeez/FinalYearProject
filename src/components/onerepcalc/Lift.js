@@ -46,6 +46,7 @@ class Lift extends React.Component {
   };
 
   render() {
+
     const { classes, text, max, lift } = this.props;
     const { onerepmax, weight, reps } = this.state;
 

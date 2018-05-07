@@ -80,11 +80,3 @@ export const data = {
   ]
 
 };
-
-export const maxes = {
-  dead: [],
-  bench: [],
-  squat: [],
-  ohp: []
-
-};

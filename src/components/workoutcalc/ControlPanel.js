@@ -27,7 +27,6 @@ class ControlPanel extends React.Component {
   }
   render() {
     const { classes } = this.props;
-    console.log(this.state.lifts);
     return (
       <Grid container className={classes.root} align="center">
         <Grid item xs={12}>

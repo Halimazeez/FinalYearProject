@@ -34,22 +34,10 @@ class WeeklyForm extends React.Component {
       ],
       values: [],
       lifts: [
-        {
-          name: "Bench Press",
-          sets: this.getSets(this.props.week)
-        },
-        {
-          name: "Deadlift",
-          sets: this.getSets(this.props.week)
-        },
-        {
-          name: "Squat",
-          sets: this.getSets(this.props.week)
-        },
-        {
-          name: "Overhead Press",
-          sets: this.getSets(this.props.week)
-        }
+        { name: "Bench Press" },
+        { name: "Deadlift" },
+        { name: "Squat" },
+        { name: "Overhead Press" }
       ]
     };
   }
@@ -109,6 +97,8 @@ class WeeklyForm extends React.Component {
   };
 
   render() {
+    //console.log(JSON.stringify(this.props));
+
     const { classes } = this.props;
     if (this.state.loading) {
       return <Loading />;

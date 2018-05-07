@@ -43,6 +43,7 @@ export default class LoginForm extends React.Component {
   };
 
   render() {
+    //console.log(JSON.stringify(this.state));
     return (
       <form style={styles.container} onSubmit={this.onSubmit}>
         <Paper style={styles.paper}>

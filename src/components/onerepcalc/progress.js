@@ -7,9 +7,18 @@ import "rc-slider/assets/index.css";
 import { withStyles } from "material-ui/styles";
 import Data from "./Data";
 
-const Progress = ({ value, max, marks }) => (
+
+const Progress = ({ value, max, marks, min }) => (
   <div style={styles.root}>
-    <Slider defaultValue={0} value={value} min={0} marks={marks} max={max} />
+    <Slider
+      defaultValue={0}
+      value={value}
+      min={min}
+      marks={marks}
+      max={max}
+      //activeDotStyle={{ size: 20 }}
+      //dotStyle={{ borderColor: 'l' }}
+    />
   </div>
 );
 
@@ -17,6 +26,9 @@ const styles = {
   root: {
     flexGrow: 1,
     marginTop: 10
+  },
+  hey: {
+    color: 'red'
   }
 };
 

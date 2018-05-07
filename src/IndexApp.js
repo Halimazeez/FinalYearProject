@@ -42,7 +42,7 @@ export default class IndexApp extends React.Component {
         this.setState({ isAuthed: true });
       } else {
         //otherwise goto home page and set auth state to false
-        history.replace("/home");
+        history.replace("/");
         this.setState({ isAuthed: false });
       }
     });
@@ -61,12 +61,11 @@ export default class IndexApp extends React.Component {
                 />
               )}
             />
-
             <Route
               path="/dashboard"
               render={() => <App sideNavOpen={this.state.sideNavOpen} />}
             />
-
+            <Route exact path="/" component={HomePage} />
             <Route path="/login" component={LoginPage} />
             <Route path="/register" component={RegisterPage} />
             <Route path="/dashboard/profile" component={Profile} />

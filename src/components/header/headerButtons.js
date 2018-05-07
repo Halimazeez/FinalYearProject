@@ -77,7 +77,7 @@ export default class HeaderButtons extends React.Component {
     ) : (
       //hold not authenticated auth state
       <div style={styles.loginButton}>
-        <Link to="/home" style={styles.link}>
+        <Link to="/" style={styles.link}>
           <IconButton color="inherit">
             <Home />
           </IconButton>

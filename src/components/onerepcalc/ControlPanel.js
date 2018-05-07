@@ -20,6 +20,7 @@ class ControlPanel extends React.Component {
   }
 
   render() {
+
     const { classes } = this.props;
     const { userWeight } = this.props;
 

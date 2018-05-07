@@ -38,7 +38,11 @@ class SaveLift extends React.Component {
     const { classes } = this.props;
     return (
       <div style={styles.root}>
-        <Button onClick={this.saveLift} className={classes.icon}>
+        <Button
+          onClick={this.saveLift}
+          className={classes.icon}
+          disabled={this.props.disabled}
+        >
           <Save />
           Save
         </Button>
