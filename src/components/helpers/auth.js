@@ -33,7 +33,8 @@ export function addUser(user) {
       ohp: 0,
       bench: 0,
       squat: 0,
-      dead: 0
+      dead: 0,
+      userWeight: 0
     })
     .catch(error => {
       console.error("Error adding document: ", error);

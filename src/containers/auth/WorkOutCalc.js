@@ -62,7 +62,7 @@ class OneRepCalc extends React.Component {
   }
 
   render() {
-    
+
     if (this.state.loading) {
       return <Loading />;
     }
@@ -106,7 +106,8 @@ OneRepCalc.propTypes = {
 
 const styles = {
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    paddingBottom: 10
   }
 };
 

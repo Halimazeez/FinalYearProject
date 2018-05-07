@@ -8,35 +8,78 @@ import Grid from "material-ui/Grid";
 import { AccountCircle } from "material-ui-icons/";
 import Icon from "material-ui/Icon";
 import Divider from "material-ui/Divider";
+import List, {
+  ListItem,
+  ListItemIcon,
+  ListItemSecondaryAction,
+  ListItemText
+} from "material-ui/List";
 
 class ProfileLifts extends React.Component {
   constructor(props) {
-    super();
+    super(props);
+    this.state = {};
   }
   render() {
-    
     return (
       <Grid container style={styles.root}>
         <Paper style={styles.paper}>
-          <Grid item xs={12} style={styles.center}>
+          <Grid item xs={12} align="center">
             <AccountCircle style={styles.icon} />
           </Grid>
-          {this.props.email}
+
+          <Grid item xs={12} align="center">
+            <Typography>
+              <p>{this.props.email}</p>
+            </Typography>
+          </Grid>
 
           <Divider />
 
+          
           <Grid container justify="center">
-            <Grid item xs={12}>
-              <p>Bench Press: {this.props.bench}</p>
+            <Grid item xs={6}>
+              <Typography variant="title">
+                <p>Bench Press ORM: </p>
+              </Typography>
             </Grid>
-            <Grid item xs={12}>
-              <p>Squat:{this.props.squat}</p>
+            <Grid item xs={2}>
+              <Typography variant="title">
+                <p>{this.props.bench}</p>
+              </Typography>
             </Grid>
-            <Grid item xs={12}>
-              <p>Deadlift: {this.props.dead}</p>
+
+            <Grid item xs={6}>
+              <Typography variant="title">
+                <p>Deadlift ORM: </p>
+              </Typography>
             </Grid>
-            <Grid item xs={12}>
-              <p>Overhead Press:{this.props.ohp}</p>
+            <Grid item xs={2}>
+              <Typography variant="title">
+                <p>{this.props.dead}</p>
+              </Typography>
+            </Grid>
+
+            <Grid item xs={6}>
+              <Typography variant="title">
+                <p>Squat ORM: </p>
+              </Typography>
+            </Grid>
+            <Grid item xs={2}>
+              <Typography variant="title">
+                <p>{this.props.squat}</p>
+              </Typography>
+            </Grid>
+
+            <Grid item xs={6}>
+              <Typography variant="title">
+                <p>Overhead Press ORM: </p>
+              </Typography>
+            </Grid>
+            <Grid item xs={2}>
+              <Typography variant="title">
+                <p>{this.props.ohp}</p>
+              </Typography>
             </Grid>
           </Grid>
         </Paper>
@@ -61,9 +104,6 @@ const styles = {
   icon: {
     width: 100,
     height: 100
-  },
-  center: {
-    textAlign: "center"
   }
 };
 

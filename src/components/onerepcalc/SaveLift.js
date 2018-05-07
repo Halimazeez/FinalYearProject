@@ -8,7 +8,6 @@ import Button from "material-ui/Button";
 import { Save } from "material-ui-icons/";
 
 import { firebaseAuth, db } from "../helpers/dbCon";
-import Data from "./Data";
 import Loading from "../helpers/loading";
 
 class SaveLift extends React.Component {
@@ -54,7 +53,7 @@ class SaveLift extends React.Component {
 const styles = {
   root: {
     flexGrow: 1,
-    marginTop: 20
+    marginTop: 30
   },
   icon: {
     "&:hover": {

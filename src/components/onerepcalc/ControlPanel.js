@@ -27,7 +27,7 @@ class ControlPanel extends React.Component {
     return (
       <Grid container className={classes.root} justify="center">
         <Grid item xs align="center">
-          <Paper className={classes.paper}>
+          <Paper className={classes.paper} elevation={1}>
             <Typography variant="subheading" className={classes.subHeader}>
               <strong>Your Weight:</strong>
             </Typography>
@@ -73,7 +73,7 @@ const styles = theme => ({
   },
   subHeader: {},
   paper: {
-    maxWidth: 200,
+    width: 170,
     padding: 10
   }
 });
