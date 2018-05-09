@@ -6,7 +6,7 @@ import Drawer from "material-ui/Drawer";
 import Divider from "material-ui/Divider";
 import List, { ListItem, ListItemIcon, ListItemText } from "material-ui/List";
 import Paper from "material-ui/Paper";
-import { AccountCircle, Dashboard } from "material-ui-icons/";
+import { AccountCircle, Dashboard, FitnessCenter } from "material-ui-icons/";
 import DraftsIcon from "material-ui-icons/Drafts";
 import { withStyles } from "material-ui/styles";
 
@@ -36,7 +36,7 @@ class sideNav extends React.Component {
 
             <Link to="/workoutcalc" style={styles.loginLink}>
               <ListItem button divider disableGutters style={styles.gutter}>
-                <AccountCircle />
+                <FitnessCenter />
               </ListItem>
             </Link>
 

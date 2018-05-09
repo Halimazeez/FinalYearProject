@@ -16,7 +16,9 @@ export default class RegisterForm extends React.Component {
     this.state = {
       email: "",
       password: "",
-      registerError: null
+      rpassword: "",
+      registerError: null,
+      error: null
     };
   }
 
@@ -30,16 +32,23 @@ export default class RegisterForm extends React.Component {
       [e.target.id]: e.target.value
     });
     //reset the error if exist
-    if (this.state.registerError != null) {
-      this.setState({ registerError: null });
+    if (this.state.registerError != null || this.state.error != null) {
+      this.setState({ registerError: null, error: null });
     }
   };
   //submit new user information
   onSubmit = e => {
     e.preventDefault();
-    createUser(this.state.email, this.state.password).catch(e =>
-      this.setErrorMsg(e)
-    );
+    if (this.state.password === this.state.rpassword) {
+      createUser(this.state.email, this.state.password).catch(e =>
+        this.setErrorMsg(e)
+      );
+    } else {
+      this.setState({
+        error: 1
+      });
+    }
+
     //history.push("/dashboard");
   };
 
@@ -67,6 +76,17 @@ export default class RegisterForm extends React.Component {
             style={styles.textField}
             onChange={this.onChange}
             value={this.state.password}
+          />
+          <TextField
+            id="rpassword"
+            type="password"
+            label="Repeat Password"
+            placeholder="Verify Password"
+            style={styles.textField}
+            onChange={this.onChange}
+            value={this.state.rpassword}
+            error={this.state.error === 1}
+            helperText={this.state.error === 1 ? "Password's do not match" : ""}
           />
           {this.state.registerError && (
             <div>

@@ -15,14 +15,12 @@ import Input, { InputLabel, InputAdornment } from "material-ui/Input";
 class ControlPanel extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = {};
   }
 
   render() {
-
     const { classes } = this.props;
-    const { userWeight } = this.props;
+    const { userWeight, error } = this.props;
 
     return (
       <Grid container className={classes.root} justify="center">
@@ -31,18 +29,20 @@ class ControlPanel extends React.Component {
             <Typography variant="subheading" className={classes.subHeader}>
               <strong>Your Weight:</strong>
             </Typography>
-            <Input
+            <TextField
               id="userWeight"
               type="number"
               className={classes.inputs}
               onChange={this.props.onChange}
               value={userWeight}
-              disableUnderline
               placeholder="0"
-              startAdornment={
-                <InputAdornment position="start">Kg</InputAdornment>
-              }
-              maxLength={2}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">Kg</InputAdornment>
+                )
+              }}
+              error={error === 1}
+              helperText={error === 1 ? "Only 0-140kg" : ""}
             />
           </Paper>
         </Grid>
@@ -67,14 +67,15 @@ const styles = theme => ({
     paddingLeft: 25
   },
   inputs: {
-    paddingLeft: 20,
-    width: 70,
+    paddingLeft: 0,
+    width: 80,
     color: "inherit"
   },
   subHeader: {},
   paper: {
     width: 170,
-    padding: 10
+    padding: 10,
+    height: 70
   }
 });
 

@@ -70,11 +70,18 @@ class Profile extends React.Component {
     }
 
     return (
-      <div>
+      <div style={styles.root}>
         <ProfileLifts {...this.state} />
         <TimeStamps />
       </div>
     );
+  }
+}
+
+const styles = {
+  root: {
+    marginTop: 70,
+    marginBottom: 10
   }
 }
 

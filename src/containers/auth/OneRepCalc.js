@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import Paper from "material-ui/Paper";
 import Grid from "material-ui/Grid";
 import { withStyles } from "material-ui/styles";
-import { Home } from "material-ui-icons/";
+import { FitnessCenter } from "material-ui-icons/";
 import Button from "material-ui/Button";
 
 import Lift from "../../components/onerepcalc/Lift";
@@ -30,7 +30,8 @@ class OneRepCalc extends React.Component {
         { name: "Overhead Press", onerepmax: 0, db: "ohp" }
       ],
       userWeight: 0,
-      loading: true
+      loading: true,
+      error: null
     };
   }
 
@@ -120,17 +121,31 @@ class OneRepCalc extends React.Component {
   weightChange = e => {
     const { userWeight } = this.state;
     if (e.target.value < 140) {
-      this.setState(
-        {
-          userWeight: e.target.value
-        },
-        () => {
-          this.ticks();
-        }
-      );
+      if (e.target.value < 0) {
+        this.setState(
+          {
+            error: 1,
+            userWeight: 0
+          },
+          () => {
+            this.ticks();
+          }
+        );
+      } else {
+        this.setState(
+          {
+            error: 0,
+            userWeight: e.target.value
+          },
+          () => {
+            this.ticks();
+          }
+        );
+      }
     } else {
       this.setState(
         {
+          error: 1,
           userWeight: 140
         },
         () => {
@@ -168,6 +183,7 @@ class OneRepCalc extends React.Component {
             <ControlPanel
               userWeight={this.state.userWeight}
               onChange={this.weightChange.bind(this)}
+              error={this.state.error}
             />
           </Grid>
           <Grid item xs={12} lg={2}>
@@ -204,7 +220,7 @@ class OneRepCalc extends React.Component {
         <Grid container className={classes.grid} justify="center" spacing={16}>
           {this.state.lifts.map((lift, liftIndex) => (
             <Grid item lg={5} xs={12} key={liftIndex}>
-              <Panels Icon={Home} title={lift.name}>
+              <Panels Icon={FitnessCenter} title={lift.name}>
                 <Grid container align="center">
                   <Grid item xs={12}>
                     <Lift
@@ -259,7 +275,7 @@ const styles = theme => ({
   },
   buttonStyle: {
     minWidth: 190,
-    maxHeight: 10
+    height: 42
   },
   link: {
     textDecoration: "none"

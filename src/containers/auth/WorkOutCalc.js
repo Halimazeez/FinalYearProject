@@ -139,7 +139,8 @@ WorkOutCalc.propTypes = {
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    paddingBottom: 10
+    paddingBottom: 10,
+    marginTop: 75
   },
   print: {
     paddingTop: theme.spacing.unit * 3,

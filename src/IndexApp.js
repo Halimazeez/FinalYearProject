@@ -5,7 +5,6 @@ import HomePage from "./containers/HomePage";
 import LoginPage from "./containers/LoginPage";
 import RegisterPage from "./containers/RegisterPage";
 import NotFoundPage from "./containers/NotFoundPage";
-import DashBoard from "./containers/auth/DashBoard";
 import OneRepCalc from "./containers/auth/OneRepCalc";
 import WorkOutCalc from "./containers/auth/WorkOutCalc";
 import SideNav from "./containers/auth/SideNav";

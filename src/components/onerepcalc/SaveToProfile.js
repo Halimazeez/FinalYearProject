@@ -158,7 +158,8 @@ const styles = theme => ({
     marginRight: theme.spacing.unit
   },
   buttonStyle: {
-    minWidth: 190
+    minWidth: 190,
+    height: 42
   }
 });
 

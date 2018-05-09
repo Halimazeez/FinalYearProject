@@ -31,16 +31,28 @@ class HomePage extends React.Component {
             </Grid>
 
             <Grid item xs={12} className={classes.titleButton}>
-              <Button variant="raised">Get Started</Button>
+              <Link to="login" className={classes.link}>
+                <Button variant="raised">Get Started</Button>
+              </Link>
             </Grid>
           </Grid>
         </Grid>
 
         <Grid container className={classes.sectionTwo}>
-          <Grid container className={classes.sectionTwoContent}>
-            <Grid item xs={12} className={classes.repLift}>
+          <Grid
+            container
+            className={classes.sectionTwoContent}
+            justify="center"
+          >
+            <Grid item xs={12} className={classes.repLift} />
+            <Typography variant="title" className={classes.by}>
+              Final Year Project
+            </Typography>
 
-            </Grid>
+            <Grid item xs={12} className={classes.repLift} />
+            <Typography variant="subheading" className={classes.bytwo}>
+              &copy; 2018 Halim Azeez - p15180243
+            </Typography>
           </Grid>
         </Grid>
       </Grid>
@@ -55,7 +67,7 @@ HomePage.propTypes = {
 const styles = theme => ({
   //sectionOne
   sectionOne: {
-    minHeight: "70vh",
+    minHeight: "90vh",
     backgroundColor: "#3c8dbc"
   },
   sectionOneContent: {
@@ -85,8 +97,12 @@ const styles = theme => ({
     maxWidth: 800,
     marginTop: 20
   },
-  repLift: {
-    maxWidth: 400
+  link: {
+    color: "inherit",
+    textDecoration: "none"
+  },
+  bytwo: {
+    marginTop: 2
   }
 });
 
