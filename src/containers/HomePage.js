@@ -26,7 +26,7 @@ class HomePage extends React.Component {
 
             <Grid item xs={12}>
               <Typography className={classes.titleText}>
-                Define your Strength and generate your dynamic Strength plan
+                Define your Strength and generate your dynamic Strength workout
               </Typography>
             </Grid>
 

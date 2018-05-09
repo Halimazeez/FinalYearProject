@@ -195,7 +195,7 @@ class OneRepCalc extends React.Component {
               direction="column"
             >
               <Grid item xs>
-                <Link to="/dashboard/workoutcalc" className={classes.link}>
+                <Link to="/workoutcalc" className={classes.link}>
                   <Button
                     disabled={isEnabled}
                     variant="raised"
