@@ -82,7 +82,7 @@ export default class LoginForm extends React.Component {
               Login
             </Button>
 
-            <Link to="/register">
+            <Link to="/register" style={styles.link}>
               <Button style={styles.button} variant="raised" color="secondary">
                 Register
               </Button>
@@ -126,5 +126,10 @@ const styles = {
   },
   typo: {
     fontSize: 30
+  },
+
+  link: {
+    color: "inherit",
+    textDecoration: "none"
   }
 };

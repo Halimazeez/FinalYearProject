@@ -36,7 +36,7 @@ export default class HeaderButtons extends React.Component {
 
   handleProfile = () => {
     this.handleClose();
-    history.push("/dashboard/profile");
+    history.push("/profile");
   };
 
   //check to see if user is authenticated with firebase

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import moment from "moment";
+import * as moment from 'moment';
 import classNames from "classnames";
 
 import { withStyles } from "material-ui/styles";
@@ -36,8 +36,7 @@ class SaveToProfile extends React.Component {
   }
 
   saveStamp = () => {
-    let curTime = moment();
-    let formatTime = curTime.format("Do MMM YYYY (HH:MM)").toString();
+    let formatTime = moment().format("Do MMM YYYY (HH:mm)");
     console.log(formatTime);
 
     const { lifts } = this.props;
@@ -51,14 +50,35 @@ class SaveToProfile extends React.Component {
         [lifts[1].db]: lifts[1].onerepmax,
         [lifts[2].db]: lifts[2].onerepmax,
         [lifts[3].db]: lifts[3].onerepmax,
-        userWeight: this.props.userWeight
+        userWeight: this.props.userWeight,
+        lastUpdate: formatTime
       })
       .then(lift => {
-        console.log("Document successfully updated!");
+        console.log("Lifts updated!");
       })
       .catch(error => {
         // The document probably doesn't exist.
-        console.error("Error updating document: ", error);
+        console.error("Error updating lifts: ", error);
+      });
+
+    //set new log
+    docRef
+      .collection("profile")
+      .doc()
+      .set({
+        [lifts[0].db]: lifts[0].onerepmax,
+        [lifts[1].db]: lifts[1].onerepmax,
+        [lifts[2].db]: lifts[2].onerepmax,
+        [lifts[3].db]: lifts[3].onerepmax,
+        timeStamp: formatTime,
+        userWeight: this.props.userWeight
+      })
+      .then(lift => {
+        console.log("Pushed timestamp to profile!");
+      })
+      .catch(error => {
+        // The document probably doesn't exist.
+        console.error("Error pushing timestamp: ", error);
       });
 
     if (!this.state.loading) {

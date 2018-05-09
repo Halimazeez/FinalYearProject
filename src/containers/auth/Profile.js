@@ -2,7 +2,9 @@ import React from "react";
 
 import { firebaseAuth, db } from "../../components/helpers/dbCon";
 import Loading from "../../components/helpers/loading";
+
 import ProfileLifts from "../../components/profile/ProfileLifts";
+import TimeStamps from "../../components/profile/TimeStamps";
 
 //import { logout } from "../helpers/auth";
 
@@ -10,34 +12,40 @@ class Profile extends React.Component {
   constructor() {
     super();
     this.state = {
-      ohp: "",
-      bench: "",
-      squat: "",
-      dead: "",
-      email: "",
-      loading: true
+      lifts: [
+        { name: "Bench Press", onerepmax: 0, db: "bench" },
+        { name: "Deadlift", onerepmax: 0, db: "dead" },
+        { name: "Squat", onerepmax: 0, db: "squat" },
+        { name: "Overhead Press", onerepmax: 0, db: "ohp" }
+      ],
+      userWeight: 0,
+      loading: true,
+      email: ""
     };
   }
 
   componentDidMount() {
+    const { lifts } = this.state;
     firebaseAuth().onAuthStateChanged(user => {
       if (user) {
-        //set database reference
         let userid = firebaseAuth().currentUser.uid;
         let docRef = db.collection("users").doc(userid);
 
-        //getting user data
         docRef
           .get()
           .then(doc => {
             if (doc.exists) {
-              //set user data to states
+              //get user ORM and set to current states
+              lifts[0].onerepmax = doc.data().bench;
+              lifts[1].onerepmax = doc.data().dead;
+              lifts[2].onerepmax = doc.data().squat;
+              lifts[3].onerepmax = doc.data().ohp;
+
               this.setState({
-                ohp: doc.data().ohp,
-                bench: doc.data().bench,
-                dead: doc.data().dead,
-                squat: doc.data().squat,
+                lifts,
+                userWeight: doc.data().userWeight,
                 email: doc.data().email,
+                lastUpdate: doc.data().lastUpdate,
                 loading: false
               });
             } else {
@@ -61,7 +69,12 @@ class Profile extends React.Component {
       return <Loading />;
     }
 
-    return <ProfileLifts {...this.state} />;
+    return (
+      <div>
+        <ProfileLifts {...this.state} />
+        <TimeStamps />
+      </div>
+    );
   }
 }
 

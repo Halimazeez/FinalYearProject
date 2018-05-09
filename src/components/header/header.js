@@ -1,11 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 import AppBar from "material-ui/AppBar";
 import Toolbar from "material-ui/Toolbar";
 import Typography from "material-ui/Typography";
 import IconButton from "material-ui/IconButton";
 import MenuIcon from "material-ui-icons/Menu";
+
+import SideNav from "../../containers/auth/SideNav";
 
 import HeaderButtons from "./HeaderButtons";
 import { firebaseAuth } from "../helpers/dbCon";
@@ -27,12 +30,14 @@ export default class Header extends React.Component {
     ) : null;
 
     return (
-      <AppBar elevation={0}>
+      <AppBar elevation={0} style={styles.roots}>
         <Toolbar>
           {authedNavToggle}
-          <Typography variant="title" color="inherit" style={styles.flex}>
-            fit<b>Me</b>
-          </Typography>
+          <Link to="/" style={styles.link}>
+            <Typography variant="title" color="inherit">
+              fit<b>Me</b>
+            </Typography>
+          </Link>
           <HeaderButtons isAuthed={this.props.isAuthed} />
         </Toolbar>
       </AppBar>
@@ -51,5 +56,10 @@ const styles = {
   },
   flex: {
     flex: 1
-  }
+  },
+  link: {
+    color: "inherit",
+    textDecoration: "none",
+    flex: 50
+  },
 };

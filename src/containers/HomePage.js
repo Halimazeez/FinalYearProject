@@ -13,7 +13,6 @@ import Lift from "../components/onerepcalc/Lift";
 
 class HomePage extends React.Component {
   render() {
-    
     const { classes } = this.props;
     return (
       <Grid container justify="center" align="center">
@@ -27,7 +26,7 @@ class HomePage extends React.Component {
 
             <Grid item xs={12}>
               <Typography className={classes.titleText}>
-                Define your Strength and generate a dynamic Strength plan
+                Define your Strength and generate your dynamic Strength plan
               </Typography>
             </Grid>
 
@@ -40,7 +39,7 @@ class HomePage extends React.Component {
         <Grid container className={classes.sectionTwo}>
           <Grid container className={classes.sectionTwoContent}>
             <Grid item xs={12} className={classes.repLift}>
-              <Lift />
+
             </Grid>
           </Grid>
         </Grid>
@@ -56,11 +55,11 @@ HomePage.propTypes = {
 const styles = theme => ({
   //sectionOne
   sectionOne: {
-    minHeight: "60vh",
+    minHeight: "70vh",
     backgroundColor: "#3c8dbc"
   },
   sectionOneContent: {
-    paddingTop: 180,
+    paddingTop: 250,
     paddingBottom: 100,
     color: "#fff",
     display: "block"
@@ -75,7 +74,8 @@ const styles = theme => ({
   titleText: {
     fontSize: "1.5rem",
     color: "inherit",
-    maxWidth: 400
+    maxWidth: 400,
+    marginTop: 10
   },
   titleButton: {
     marginTop: 20

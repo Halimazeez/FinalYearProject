@@ -5,7 +5,6 @@ import HomePage from "./containers/HomePage";
 import LoginPage from "./containers/LoginPage";
 import RegisterPage from "./containers/RegisterPage";
 import NotFoundPage from "./containers/NotFoundPage";
-import App from "./containers/auth/App";
 import DashBoard from "./containers/auth/DashBoard";
 import OneRepCalc from "./containers/auth/OneRepCalc";
 import WorkOutCalc from "./containers/auth/WorkOutCalc";
@@ -24,7 +23,7 @@ export default class IndexApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sideNavOpen: true,
+      sideNavOpen: false,
       isAuthed: null
     };
   }
@@ -62,16 +61,20 @@ export default class IndexApp extends React.Component {
               )}
             />
             <Route
-              path="/dashboard"
-              render={() => <App sideNavOpen={this.state.sideNavOpen} />}
+              path="/"
+              render={() => (
+                <SideNav
+                  sideNavOpen={this.state.sideNavOpen}
+                  toggleSideNav={this.toggleSideNav.bind(this)}
+                />
+              )}
             />
             <Route exact path="/" component={HomePage} />
+            <Route path="/profile" component={Profile} />
             <Route path="/login" component={LoginPage} />
             <Route path="/register" component={RegisterPage} />
-            <Route path="/dashboard/profile" component={Profile} />
-            <Route path="/dashboard/onerepcalc" component={OneRepCalc} />
-            <Route path="/dashboard/workoutcalc" component={WorkOutCalc} />
-            {/*<Route path="/" component={NotFoundPage} /> */}
+            <Route path="/dashboard" component={OneRepCalc} />
+            <Route path="/workoutcalc" component={WorkOutCalc} />
           </div>
         </Router>
       </MuiThemeProvider>

@@ -46,13 +46,12 @@ class Lift extends React.Component {
   };
 
   render() {
-
     const { classes, text, max, lift } = this.props;
     const { onerepmax, weight, reps } = this.state;
 
     return (
-      <Grid container justify="center" align="center" className={classes.root}>
-        <Grid item xs={8}>
+      <Grid container justify="center" className={classes.root}>
+        <Grid item xs={8} className={classes.spacing}>
           <TextField
             id="reps"
             label="Reps"
@@ -61,6 +60,8 @@ class Lift extends React.Component {
             className={classes.inputs}
             onChange={this.onChange}
             value={reps}
+            error={reps > 14}
+            helperText={reps > 14 ? "Maximum repetitions should range between 1-14" : ""}
           />
         </Grid>
 
@@ -73,6 +74,8 @@ class Lift extends React.Component {
             className={classes.inputs}
             onChange={this.onChange}
             value={weight}
+            error={weight > 499}
+            helperText={weight>499 ? "You don't lift that much" : ""}
           />
         </Grid>
 
@@ -102,10 +105,14 @@ const styles = {
     marginTop: 50
   },
   inputs: {
-    width: "100%"
+    width: "50%",
+    textAlign: "center"
   },
   liftContainer: {
     paddingBottom: 50
+  },
+  spacing: {
+    marginBottom: 5
   }
 };
 

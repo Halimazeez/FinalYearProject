@@ -6,16 +6,14 @@ import Drawer from "material-ui/Drawer";
 import Divider from "material-ui/Divider";
 import List, { ListItem, ListItemIcon, ListItemText } from "material-ui/List";
 import Paper from "material-ui/Paper";
-import InboxIcon from "material-ui-icons/Inbox";
+import { AccountCircle, Dashboard } from "material-ui-icons/";
 import DraftsIcon from "material-ui-icons/Drafts";
 import { withStyles } from "material-ui/styles";
-
 
 class sideNav extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = {};
   }
 
   render() {
@@ -23,41 +21,30 @@ class sideNav extends React.Component {
     return (
       <div>
         <Drawer
-          variant="persistent"
+          variant="temporary"
           classes={{ paper: classes.paper }}
-          anchor="left"
           open={this.props.sideNavOpen}
+          //onBlur={this.props.toggleSideNav}
+          onClick={this.props.toggleSideNav}
         >
           <List>
-            <Link to="/dashboard/onerepcalc" style={styles.loginLink}>
+            <Link to="/dashboard" style={styles.loginLink}>
               <ListItem button divider disableGutters style={styles.gutter}>
-                <InboxIcon />
-                {/* }<ListItemText primary="One-Rep-Max" /> */}
+                <Dashboard />
               </ListItem>
             </Link>
 
-            <Link to="/dashboard/workoutcalc" style={styles.loginLink}>
+            <Link to="/workoutcalc" style={styles.loginLink}>
               <ListItem button divider disableGutters style={styles.gutter}>
-                <InboxIcon />
-                {/* <ListItemText primary="Workout Calculator" />  */}
+                <AccountCircle />
               </ListItem>
             </Link>
-          </List>
 
-          <List>
-            <ListItem button disabled disableGutters style={styles.gutter}>
-              <ListItemIcon>
-                <InboxIcon />
-              </ListItemIcon>
-              {/*<ListItemText primary="About Us" /> */}
-            </ListItem>
-
-            <ListItem button disabled disableGutters style={styles.gutter}>
-              <ListItemIcon>
-                <DraftsIcon />
-              </ListItemIcon>
-              {/*<ListItemText primary="Contact" /> */}
-            </ListItem>
+            <Link to="/profile" style={styles.loginLink}>
+              <ListItem button disableGutters style={styles.gutter}>
+                <AccountCircle />
+              </ListItem>
+            </Link>
           </List>
         </Drawer>
       </div>
@@ -74,6 +61,7 @@ const styles = {
     top: 64,
     width: 60,
     backgroundColor: "#666",
+    height: 165
   },
   loginLink: {
     color: "#fff",

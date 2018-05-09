@@ -174,17 +174,20 @@ class OneRepCalc extends React.Component {
             <Grid
               container
               className={classes.buttons}
+              spacing={8}
               align="center"
               direction="column"
             >
               <Grid item xs>
-                <Button
-                  disabled={isEnabled}
-                  variant="raised"
-                  className={classes.buttonStyle}
-                >
-                  Generate Workout
-                </Button>
+                <Link to="/dashboard/workoutcalc" className={classes.link}>
+                  <Button
+                    disabled={isEnabled}
+                    variant="raised"
+                    className={classes.buttonStyle}
+                  >
+                    Generate Workout
+                  </Button>
+                </Link>
               </Grid>
               <Grid item xs>
                 <SaveToProfile
@@ -243,7 +246,8 @@ OneRepCalc.propTypes = {
 
 const styles = theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    marginTop: 70
   },
   grid: {
     paddingTop: theme.spacing.unit,
@@ -254,7 +258,11 @@ const styles = theme => ({
     margin: 0
   },
   buttonStyle: {
-    minWidth: 190
+    minWidth: 190,
+    maxHeight: 10
+  },
+  link: {
+    textDecoration: "none"
   }
 });
 

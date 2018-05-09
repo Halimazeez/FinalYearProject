@@ -146,7 +146,8 @@ WeeklyForm.propTypes = {
 
 const styles = theme => ({
   root: {
-    marginTop: 50
+    marginTop: 50,
+    paddingTop: 20
   },
   header: {
     fontWeight: "bold"
